@@ -1,18 +1,25 @@
+import { useState, useEffect } from 'react';
+import EventAmsterdam from './pages/EventAmsterdam';
+import EventIbiza from './pages/EventIbiza';
+import EventTenerife from './pages/EventTenerife';
+import Progressive from './pages/Progressive';
+import Future from './pages/Future';
+import Bass from './pages/Bass';
+import Tomorrowland from './pages/Tomorrowland';
+import IbizaOpening from './pages/IbizaOpening';
+import EDCLasVegas from './pages/EDCLasVegas';
+import articles from './data/articlesData';
+import artists from './data/artistsData';
+import latestPosts from './data/latestPosts';
 
 function Footer() {
   return (
     <footer className="border-t border-gray-200 px-8 py-6 text-center text-sm text-gray-600">
       <p>© 2025 EchoWave. All rights reserved.</p>
       <div className="flex justify-center space-x-4 mt-2">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">
-          Instagram
-        </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">
-          Twitter
-        </a>
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">
-          Facebook
-        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">Instagram</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">Twitter</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">Facebook</a>
       </div>
     </footer>
   );
@@ -24,16 +31,38 @@ function App() {
   const [eventsOpen, setEventsOpen] = useState(false);
   const [exclusivesOpen, setExclusivesOpen] = useState(false);
 
-  // ---- Browser history support ----
-  useEffect(() => {
-    window.history.replaceState({ page: currentPage }, '', '');
+  const pathFromPage = (page) => {
+    if (!page || page === 'home') return '/';
+    if (page === 'amsterdam-page') return '/amsterdam';
+    if (page === 'ibiza-page') return '/ibiza';
+    if (page === 'tenerife-page') return '/tenerife';
+    if (page === 'login') return '/login';
+    if (page === 'signup') return '/signup';
+    if (page.includes('-article')) return `/article/${page}`;
+    if (page.includes('-bio')) return `/bio/${page}`;
+    return `/${page}`;
+  };
 
-    const handlePopState = (event) => {
-      if (event.state && event.state.page) {
-        setCurrentPage(event.state.page);
-      } else {
-        setCurrentPage('home');
-      }
+  const pageFromPath = (path) => {
+    if (!path || path === '/') return 'home';
+    const parts = path.replace(/^\//, '').split('/');
+    if (parts[0] === 'article' && parts[1]) return parts[1];
+    if (parts[0] === 'bio' && parts[1]) return parts[1];
+    if (parts[0] === 'amsterdam') return 'amsterdam-page';
+    if (parts[0] === 'ibiza') return 'ibiza-page';
+    if (parts[0] === 'tenerife') return 'tenerife-page';
+    if (parts[0] === 'login') return 'login';
+    if (parts[0] === 'signup' || parts[0] === 'sign-up') return 'signup';
+    return 'not-found';
+  };
+
+  useEffect(() => {
+    const initial = pageFromPath(window.location.pathname);
+    setCurrentPage(initial);
+
+    const handlePopState = () => {
+      const p = pageFromPath(window.location.pathname);
+      setCurrentPage(p);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -42,120 +71,23 @@ function App() {
 
   const navigate = (page) => {
     setCurrentPage(page);
-    window.history.pushState({ page }, '', '');
-    // Close dropdowns when navigating
+    const url = pathFromPage(page);
+    window.history.pushState({ page }, '', url);
     setGenreOpen(false);
     setEventsOpen(false);
     setExclusivesOpen(false);
   };
-  // ---------------------------------
 
-  const latestPosts = [
-    {
-      id: 1,
-      title: "Tomorrowland 2025 Announced",
-      description: "The biggest EDM festival returns with new stages.",
-      image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=800",
-    },
-    {
-      id: 2,
-      title: "Ibiza Opening Parties",
-      description: "Ibiza clubs kick off the summer season.",
-      image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800",
-    },
-    {
-      id: 3,
-      title: "EDC Las Vegas Highlights",
-      description: "A look back at the most iconic moments.",
-      image: "https://images.unsplash.com/photo-1518972559570-7cc1309f3229?w=800",
-    },
-  ];
+  
 
-  const articles = {
-    'skrillex-article': {
-      title: 'Skrillex Announces New Album "Quest for Fire"',
-      author: 'Maid Razić a.k.a. Diam • Dec 8, 2025',
-      img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&q=80',
-      content: [
-        'After years of anticipation, Skrillex has officially announced his new studio album, Quest for Fire.',
-        'The album represents a creative rebirth, blending his signature bass-heavy roots with refined sound design, genre-bending collaborations, and experimental electronic elements.',
-        'Quest for Fire features collaborations with artists across EDM, hip-hop, and alternative genres, incorporating analog synthesizers and live instrumentation for a more organic feel.',
-        'Fans and critics alike have described the project as both aggressive and emotional — a return to form that captures the raw energy of his early work while exploring new sonic landscapes.',
-        'Skrillex himself states that Quest for Fire is his most personal project to date, reflecting his growth as an artist and his willingness to take creative risks.',
-        'Beyond the music, the album rollout includes interactive experiences, exclusive listening parties, and visual storytelling elements to immerse fans in the world of Quest for Fire.',
-        'Skrillex isn\'t just back — he\'s redefining himself, showing that electronic music can evolve while staying true to its roots.'
-      ],
-      summary: 'Skrillex announces his new album "Quest for Fire" — a creative rebirth blending bass-heavy roots with genre-bending collaborations.'
-    },
-    'martin-garrix-article': {
-      title: 'Martin Garrix Launches New Label: STMPD RCRDS Vol. 2',
-      author: 'Tarik Hodžić • Dec 3, 2025',
-      img: 'https://images.unsplash.com/photo-1525286116112-b59af11adad1?w=1200&q=80',
-      content: [
-        'Martin Garrix officially unveils STMPD RCRDS Vol. 2, expanding his creative empire and solidifying his role as a mentor for emerging talent.',
-        'The new release showcases a diverse roster of artists, spanning progressive house, future bass, and experimental EDM, reflecting Garrix\'s commitment to innovation.',
-        'STMPD RCRDS Vol. 2 emphasizes collaboration, offering rising artists guidance in production, marketing, and live performance.',
-        'Garrix explains that this label chapter focuses on giving creatives freedom while maintaining a cohesive sonic identity, blending established sounds with fresh experimentation.',
-        'The album launch is accompanied by exclusive livestream performances, behind-the-scenes studio sessions, and fan-interactive events.',
-        'This milestone not only highlights Garrix\'s entrepreneurial growth but also his dedication to shaping the future of electronic music.',
-        'STMPD RCRDS Vol. 2 is more than a label — it\'s a platform for innovation, community, and artistic evolution.'
-      ],
-      summary: 'Martin Garrix launches the second chapter of his label STMPD RCRDS, supporting emerging artists while pushing innovative electronic music.'
-    },
-    'ultra-article': {
-      title: 'Ultra Europe Expands to New Venues',
-      author: 'EchoWave Team • Dec 5, 2025',
-      img: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200',
-      content: [
-        'Ultra Europe festival is growing bigger than ever, adding new beach stages and increasing overall capacity to welcome more EDM fans from around the globe.',
-        'The organizers have redesigned the festival layout to enhance crowd flow, accessibility, and stage visibility, ensuring a better experience for attendees.',
-        'The expansion also includes upgraded VIP areas, premium lounges, and exclusive backstage experiences for fans seeking a more immersive encounter with the artists.',
-        'Ultra Europe has partnered with international artists and performers to deliver unique sets, live visuals, and surprise collaborations across multiple stages.',
-        'In addition to music, the festival now features art installations, wellness zones, and culinary experiences, making it a holistic celebration of culture and music.',
-        'Safety and sustainability are a priority, with improved security measures, green initiatives, and eco-friendly infrastructure to minimize the festival\'s environmental footprint.',
-        'This expansion marks a new chapter for Ultra Europe, solidifying its position as one of Europe\'s most iconic and forward-thinking EDM festivals.'
-      ],
-      summary: 'Ultra Europe expands with new beach stages and higher capacity, promising an even bigger EDM festival experience in Split, Croatia.'
-    }
-  };
+  
 
-  const artists = {
-    'martin-garrix-bio': {
-      title: 'Martin Garrix: The Dutch Prodigy',
-      author: 'EchoWave Team • Jan 10, 2025',
-      img: 'https://dynamicmedia.livenationinternational.com/u/p/v/2acb5db0-fee0-4b3e-a462-18d82f529191.jpg?format=webp&width=3840&quality=75',
-      content: [
-        'Martin Garrix is a Dutch DJ, producer, and songwriter who has become one of the most influential figures in modern electronic dance music. Born Martijn Gerard Garritsen on May 14, 1996, in Amstelveen, Netherlands, he broke onto the global scene at just 17 years old with his explosive 2013 hit "Animals," a track that redefined big-room EDM and became a festival anthem worldwide.',
-        '## The Early Years',
-        'Growing up in Amstelveen, just outside Amsterdam, Garrix showed an early interest in music. He began playing guitar at age 8 and started experimenting with digital audio workstations by 11. His musical education included studying at the Herman Brood Academy, a prestigious music production school in Utrecht, where he honed his production skills and developed his signature sound.',
-        '## Global Breakthrough with "Animals"',
-        'Released in 2013, "Animals" became an instant global phenomenon. The track\'s minimalistic yet powerful drop, featuring a distinctive synth lead and driving bassline, captured the energy of the big-room house movement. It topped charts in over 10 countries, including the UK, Belgium, and his native Netherlands, and has since been certified multi-platinum in numerous territories. The success of "Animals" catapulted Garrix from an unknown teenager to an international star virtually overnight.',
-        '## Musical Evolution and Versatility',
-        'Known for his high-energy sound, melodic drops, and constant evolution, Garrix has collaborated with some of the biggest names in music, including Dua Lipa ("Scared to Be Lonely"), Khalid ("Ocean"), Usher ("Don\'t Look Down"), Bonn, and David Guetta. His versatility spans progressive house, future bass, pop, and club-driven EDM, allowing him to dominate both mainstream charts and underground festival stages.',
-        '## STMPD RCRDS: Building an Empire',
-        'In 2016, seeking creative independence, Garrix founded his own label, STMPD RCRDS. The label name comes from "stamped records," reflecting his desire to leave a lasting mark on the industry. STMPD RCRDS has grown into a respected force in the electronic music industry, showcasing both established artists and emerging talent while maintaining Garrix\'s commitment to musical innovation.',
-        '## Festival Dominance and Awards',
-        'A regular headliner at the world\'s biggest festivals—such as Tomorrowland, Ultra Music Festival, and Coachella—Martin Garrix has repeatedly been ranked #1 DJ in the world by DJ Mag\'s Top 100 DJs poll. His visually stunning live shows, featuring synchronized fireworks, lasers, and massive LED screens, have set new standards for festival production.',
-        '## Legacy and Influence',
-        'Despite his massive success, Garrix remains known for his humility, passion for music, and relentless work ethic. He has become a role model for aspiring producers worldwide, proving that age is no barrier to artistic achievement. Today, Martin Garrix continues to push the boundaries of EDM, shaping the sound of a new generation while staying true to the energy that launched his career.',
-        '## Key Achievements',
-        '- Youngest DJ ever to headline Tomorrowland (age 17)',
-        '- Multiple #1 rankings in DJ Mag\'s Top 100 DJs poll',
-        '- Over 10 billion streams across platforms',
-        '- Performances at three consecutive Olympic closing ceremonies',
-        '- Collaboration with the Dutch National Opera for a unique classical-electronic fusion project'
-      ],
-      summary: 'From teenage prodigy to global EDM icon, Martin Garrix has redefined electronic music with hits like "Animals" and built an empire with his label STMPD RCRDS.'
-    },
-    // ... (include ALL other artists from your original code)
-  };
+  
 
   // ---------------- HOME PAGE ----------------
   if (currentPage === 'home') {
     return (
       <div className="bg-white text-black font-sans">
-
-        {/* NAVBAR */}
         <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
             <h1 className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</h1>
@@ -168,7 +100,6 @@ function App() {
                 Home
               </button>
 
-              {/* GENRE */}
               <div
                 className="relative"
                 onMouseEnter={() => setGenreOpen(true)}
@@ -179,14 +110,13 @@ function App() {
                 </button>
                 {genreOpen && (
                   <div className="absolute left-0 top-full w-40 bg-white border border-gray-200 rounded-lg shadow-lg">
-                    <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-100">Progressive</a>
-                    <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-100">Future</a>
-                    <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-100">Bass</a>
+                    <button onClick={() => navigate('progressive-page')} className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Progressive</button>
+                    <button onClick={() => navigate('future-page')} className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Future</button>
+                    <button onClick={() => navigate('bass-page')} className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Bass</button>
                   </div>
                 )}
               </div>
 
-              {/* EVENTS */}
               <div
                 className="relative"
                 onMouseEnter={() => setEventsOpen(true)}
@@ -208,7 +138,6 @@ function App() {
                 Playlist
               </a>
 
-              {/* EXCLUSIVES */}
               <div
                 className="relative"
                 onMouseEnter={() => setExclusivesOpen(true)}
@@ -241,7 +170,6 @@ function App() {
           </div>
         </nav>
 
-        {/* HERO */}
         <section className="h-[80vh] flex flex-col items-center justify-center text-center px-6">
           <h2 className="text-5xl md:text-6xl font-extrabold mb-6">
             Feel the <span className="text-purple-600">Echo</span> of EDM
@@ -254,12 +182,11 @@ function App() {
           </a>
         </section>
 
-        {/* LATEST POSTS */}
         <section className="px-8 py-16">
           <h3 className="text-3xl font-bold mb-10 text-center">Latest Posts</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {latestPosts.map((post) => (
-              <div key={post.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+              <div key={post.id} onClick={() => navigate(post.slug)} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer">
                 <img src={post.image} className="w-full h-48 object-cover" alt={post.title} />
                 <div className="p-4">
                   <h4 className="font-bold text-lg mb-2">{post.title}</h4>
@@ -270,7 +197,6 @@ function App() {
           </div>
         </section>
 
-        
         <section className="px-8 py-16 bg-gray-50">
           <h3 className="text-3xl font-bold mb-10 text-center">Recent Articles</h3>
           <div className="space-y-8 max-w-4xl mx-auto">
@@ -305,12 +231,10 @@ function App() {
     );
   }
 
-  // ---------------- LOGIN PAGE ----------------
   if (currentPage === 'login') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full">
-          {/* Back Button */}
           <button
             onClick={() => navigate('home')}
             className="flex items-center text-purple-600 hover:text-purple-800 mb-8 group"
@@ -319,7 +243,6 @@ function App() {
             Back to Home
           </button>
 
-          {/* Login Card */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <div className="text-center mb-10">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mb-6">
@@ -413,12 +336,10 @@ function App() {
     );
   }
 
-  // ---------------- SIGNUP PAGE ----------------
   if (currentPage === 'signup') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full">
-          {/* Back Button */}
           <button
             onClick={() => navigate('home')}
             className="flex items-center text-purple-600 hover:text-purple-800 mb-8 group"
@@ -427,7 +348,6 @@ function App() {
             Back to Home
           </button>
 
-          {/* Signup Card */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <div className="text-center mb-10">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6">
@@ -540,7 +460,6 @@ function App() {
     );
   }
 
-  // ---------------- ARTICLE/BIOGRAPHY PAGES ----------------
   const renderArticleOrBio = (key) => {
     const article = articles[key] || artists[key];
     if (!article) {
@@ -554,7 +473,6 @@ function App() {
 
     return (
       <div className="min-h-screen bg-white text-black font-sans">
-        {/* Header */}
         <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
             <h1 className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</h1>
@@ -571,7 +489,6 @@ function App() {
         </nav>
 
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Back Button */}
           <button
             onClick={() => window.history.back()}
             className="flex items-center text-purple-600 hover:text-purple-800 mb-8 group"
@@ -580,7 +497,6 @@ function App() {
             Back
           </button>
 
-          {/* Article Header */}
           <header className="mb-10">
             <div className="flex items-center text-sm text-gray-500 mb-4">
               <span className="font-medium text-purple-600">EXCLUSIVE</span>
@@ -615,7 +531,6 @@ function App() {
             </div>
           </header>
 
-          {/* Featured Image */}
           <div className="rounded-xl overflow-hidden shadow-lg mb-10">
             <img 
               src={article.img} 
@@ -624,7 +539,6 @@ function App() {
             />
           </div>
 
-          {/* Article Content */}
           <article className="prose prose-lg max-w-none mb-16">
             {article.content.map((paragraph, index) => (
               <div key={index} className="mb-8">
@@ -641,7 +555,6 @@ function App() {
             ))}
           </article>
 
-          {/* Share Section */}
           <div className="border-t border-gray-200 pt-8 mb-16">
             <h4 className="font-bold text-lg mb-4">Share this article</h4>
             <div className="flex space-x-4">
@@ -657,7 +570,6 @@ function App() {
             </div>
           </div>
 
-          {/* Related Articles */}
           <div className="border-t border-gray-200 pt-8">
             <h4 className="font-bold text-2xl mb-8">More from EchoWave</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -684,12 +596,46 @@ function App() {
     );
   };
 
-  // Check if current page is an article/bio page
+  if (currentPage === 'amsterdam-page') {
+    return <EventAmsterdam navigate={navigate} />;
+  }
+
+  if (currentPage === 'ibiza-page') {
+    return <EventIbiza navigate={navigate} />;
+  }
+
+  if (currentPage === 'tenerife-page') {
+    return <EventTenerife navigate={navigate} />;
+  }
+
+  if (currentPage === 'progressive-page') {
+    return <Progressive navigate={navigate} />;
+  }
+
+  if (currentPage === 'future-page') {
+    return <Future navigate={navigate} />;
+  }
+
+  if (currentPage === 'tomorrowland-post') {
+    return <Tomorrowland navigate={navigate} />;
+  }
+
+  if (currentPage === 'ibiza-opening-post') {
+    return <IbizaOpening navigate={navigate} />;
+  }
+
+  if (currentPage === 'edc-las-vegas-post') {
+    return <EDCLasVegas navigate={navigate} />;
+  }
+
+  if (currentPage === 'bass-page') {
+    return <Bass navigate={navigate} />;
+  }
+
   if (currentPage.includes('article') || currentPage.includes('-bio')) {
     return renderArticleOrBio(currentPage);
   }
 
-  // Default fallback (should not reach here)
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="text-center">

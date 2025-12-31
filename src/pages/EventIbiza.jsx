@@ -53,10 +53,10 @@ export default function EventIbiza({ navigate }) {
   };
 
   const featuredArtists = [
-    { name: 'Calvin Harris', genre: 'EDM/Pop' },
-    { name: 'The Chainsmokers', genre: 'Pop-EDM' },
-    { name: 'Tiësto', genre: 'Progressive House' },
-    { name: 'R3HAB', genre: 'Future House' }
+    { name: 'Calvin Harris', genre: 'EDM/Pop', bioKey: 'calvin-harris-bio' },
+    { name: 'The Chainsmokers', genre: 'Pop-EDM', bioKey: 'chainsmokers-bio' },
+    { name: 'Tiësto', genre: 'Progressive House', bioKey: 'tiesto-bio' },
+    { name: 'R3HAB', genre: 'Future House', bioKey: 'r3hab-bio' }
   ];
 
   return (
@@ -94,7 +94,7 @@ export default function EventIbiza({ navigate }) {
                   <ArtistCard
                     key={index}
                     artist={artist}
-                    onClick={() => navigate(artist.name.toLowerCase().replace(' ', '-') + '-bio')}
+                    onClick={() => navigate(artist.bioKey)}
                     confirmed={true}
                   />
                 ))}
