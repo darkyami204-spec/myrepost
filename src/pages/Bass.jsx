@@ -6,7 +6,11 @@ export default function Bass({ navigate }) {
   const genreContent = {
     title: 'Bass House: The Underground Revolution',
     author: 'EchoWave Team • Dec 22, 2025',
+<<<<<<< HEAD
     img: 'https://mixmagadria.com/assets/uploads/images/_fullX2/vecteezy_ai-generated-groovy-scene-view-from-the-back-as-the-dj-spins_36117097.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1200&h=600&fit=crop&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     summary: 'Discover Bass House, the underground genre that dominates modern electronic music with its heavy, wobbling basslines and hard-hitting drums.',
     content: [
       'Bass House is the underground counterpart to Future House, pushing electronic music into darker, heavier territory. Born from the fusion of house music, trap, and dubstep influences, Bass House is characterized by aggressive basslines, hard-hitting kicks, and a raw energy that appeals to the most dedicated electronic music enthusiasts.',
@@ -167,4 +171,8 @@ export default function Bass({ navigate }) {
       <Footer />
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4

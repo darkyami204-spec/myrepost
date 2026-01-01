@@ -23,7 +23,11 @@ const artists = {
   'armin-bio': {
     title: "Armin van Buuren: Trance's Global Ambassador",
     author: 'EchoWave Team • Mar 2, 2025',
+<<<<<<< HEAD
     img: 'https://djmag.com/sites/default/files/styles/djm_23_1005x565/public/article/image/04.%20ArminvanBuuren-RuudBaan-pers04_0_0.jpg.webp?itok=X8ACl7VN',
+=======
+    img: 'https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Armin van Buuren is one of the most influential figures in modern electronic music, celebrated for popularizing trance around the world through his productions, DJ sets, and radio show.',
       'Born in Leiden, Netherlands, Armin studied law before dedicating himself to music. His early career included producing remixes and playing at local clubs, which eventually led to international recognition in the early 2000s.',
@@ -35,7 +39,11 @@ const artists = {
   'amelie-lens-bio': {
     title: 'Amelie Lens: The Rise of a Techno Powerhouse',
     author: 'EchoWave Team • Apr 7, 2025',
+<<<<<<< HEAD
     img: 'https://musicinmymind.de/wp-content/uploads/2023/08/amelie-lens.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1544785349-c4a5301826fd?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Amelie Lens emerged from Belgium\'s vibrant underground to become one of techno\'s most dynamic performers. Her sets are characterized by relentless energy, taut percussion, and hypnotic grooves.',
       'Initially drawn to the underground scene as a teenager, Amelie began producing and DJing in local clubs before launching her own label, Exhale, which showcases forward-thinking techno artists.',
@@ -46,7 +54,11 @@ const artists = {
   'charlotte-bio': {
     title: "Charlotte de Witte: Minimal Techno's Fierce Ambassador",
     author: 'EchoWave Team • May 1, 2025',
+<<<<<<< HEAD
     img: 'https://electronicgroove.com/wp-content/uploads/2018/05/Charlotte-de-Witte-1.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1519750157634-bbb7a2b3c6f9?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Charlotte de Witte hails from Belgium and rose to prominence with a stripped-back, hypnotic techno sound that emphasizes groove and atmosphere.',
       'She began DJing in her teens and quickly gained traction through a series of releases that caught the attention of tastemakers and festival bookers alike.',
@@ -57,7 +69,11 @@ const artists = {
   'nina-bio': {
     title: 'Nina Kraviz: Acid, House, and Hypnotic Vocals',
     author: 'EchoWave Team • Jun 18, 2025',
+<<<<<<< HEAD
     img: 'https://clubberia.com/image/event/227958/1/1/227958.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Nina Kraviz is a Siberian-born DJ, producer, and label head whose eclectic taste spans acid, techno, house, and experimental electronic music.',
       'Her productions and DJ sets are notable for their raw textures, warped vocals, and fearless genre-crossing, carving a unique space in contemporary electronic music.'
@@ -67,27 +83,47 @@ const artists = {
   'afrojack-bio': {
     title: 'Afrojack: From Holland to Global Stage',
     author: 'EchoWave Team • Jul 22, 2025',
+<<<<<<< HEAD
     img: 'https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/2014/05/16060803/f8214edc-f3af-11ed-b991-0ee6b8365494-972x597.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Afrojack (Nick van de Wall) rose from the Netherlands\' club scene to become a mainstream EDM heavyweight, known for his high-energy electro-house productions and festival anthems.',
       'He has collaborated with top pop and electronic artists, blending chart-friendly hooks with club-ready drops, and founded Wall Recordings to support emerging producers.'
     ],
+<<<<<<< HEAD
     summary: 'Afrojack: Dutch electro-house producer and Wall Recordings founder, known for high-energy festival anthems. 🇳🇱 🇸🇷'
+=======
+    summary: 'Afrojack: Dutch electro-house producer and Wall Recordings founder, known for high-energy festival anthems.'
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
   },
   'zedd-bio': {
     title: 'Zedd: Pop-Infused Progressive Master',
     author: 'EchoWave Team • Aug 10, 2025',
+<<<<<<< HEAD
     img: 'https://images.hdqwalls.com/wallpapers/zedd-76.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1522083165198-74e7a0d7a3f2?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Zedd is a German-Russian producer who bridged EDM and pop with massive hits and precise production techniques, earning mainstream success and Grammy recognition.',
       'Known for meticulous sound design, Zedd has delivered crossover singles that brought electronic music to broader audiences.'
     ],
+<<<<<<< HEAD
     summary: 'Zedd: Grammy-winning producer who blends EDM and pop with meticulous production and catchy songwriting. 🇩🇪 🇷🇺'
+=======
+    summary: 'Zedd: Grammy-winning producer who blends EDM and pop with meticulous production and catchy songwriting.'
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
   },
   'alesso-bio': {
     title: 'Alesso: Melodic Mainstage Architect',
     author: 'EchoWave Team • Sep 3, 2025',
+<<<<<<< HEAD
     img: 'https://assets.telegraphindia.com/telegraph/2023/Jun/1686376264_alesso.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1508050919630-b135583b29d4?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Alesso rose to prominence with emotive progressive house productions and anthemic drops that became festival staples, collaborating with major pop artists and DJs alike.',
       'His melodic sensibility and knack for big-room emotion have made him a consistent mainstage headliner.'
@@ -97,7 +133,11 @@ const artists = {
   'kygo-bio': {
     title: 'Kygo: The Tropical House Pioneer',
     author: 'EchoWave Team • Oct 12, 2025',
+<<<<<<< HEAD
     img: 'https://sonic.gmo/wp/wp-content/uploads/2023/08/KYGO.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1504198266285-165fd3b6c6f0?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Kygo popularized the tropical house sound with laid-back melodies, steel-drum-like synths, and sun-soaked vibes that helped bring electronic music to daytime festival stages and radio.',
       'His work blurs the line between electronic production and pop songwriting, landing collaborations with major vocalists.'
@@ -107,7 +147,11 @@ const artists = {
   'david-guetta-bio': {
     title: 'David Guetta: Pop-EDM Collaborator and Hitmaker',
     author: 'EchoWave Team • Nov 20, 2025',
+<<<<<<< HEAD
     img: 'https://larazon.pe/wp-content/uploads/2022/12/David-Guetta.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'David Guetta helped bring electronic production to mainstream pop, crafting chart-topping collaborations and festival-ready hits across decades.',
       'From underground beginnings to global superstardom, Guetta\'s influence on EDM and pop crossover is undeniable.'
@@ -118,17 +162,29 @@ const artists = {
   'r3hab-bio': {
     title: 'R3HAB: Global Remix King',
     author: 'EchoWave Team • Jul 15, 2025',
+<<<<<<< HEAD
     img: 'https://nos.jkt-1.neo.id/cdc-s3/image/2024/11/09/r3hab_19_672f7b7832769.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1516685018646-549d9b4b6a5b?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'R3HAB (Fadil El Ghoul) rose from the Dutch-Moroccan electronic scene to international fame through a string of high-profile remixes and original productions. Known for his energetic melodic approach, R3HAB has become a festival favorite and frequent collaborator with pop artists.',
       'He blends catchy hooks with club-ready drops, maintaining a strong presence across streaming platforms and global dancefloors.'
     ],
+<<<<<<< HEAD
     summary: 'R3HAB: Dutch-Moroccan producer and remix specialist known for energetic, melodic festival-ready tracks. 🇳🇱 🇲🇦'
+=======
+    summary: 'R3HAB: Dutch-Moroccan producer and remix specialist known for energetic, melodic festival-ready tracks.'
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
   },
   'calvin-harris-bio': {
     title: 'Calvin Harris: Pop-EDM Architect',
     author: 'EchoWave Team • Aug 2, 2025',
+<<<<<<< HEAD
     img: 'https://cdn.platinumlist.net/upload/artist/calvin_harris_389-orig1697527105.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1509223197845-458d87318791?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Calvin Harris transitioned from the UK dance scene to global pop production, producing massive crossover hits and becoming one of the world\'s highest-paid DJs. His songwriting and production skills helped bridge pop and electronic music on a huge scale.',
       'Known for radio-friendly hooks and polished production, Harris continues to shape mainstream EDM and pop collaborations.'
@@ -138,7 +194,11 @@ const artists = {
   'chainsmokers-bio': {
     title: 'The Chainsmokers: Pop-Electronic Storytellers',
     author: 'EchoWave Team • Sep 12, 2025',
+<<<<<<< HEAD
     img: 'https://artafinance.com/static/9dd60346ea96a60c67d14eded5d77353/e3084/insider-angels-01-chainsmokers-billboard.webp',
+=======
+    img: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'The Chainsmokers rose to mainstream prominence with emotionally driven pop-EDM singles that combined catchy melodies with relatable lyrics. Their work often blurs the line between pop songwriting and electronic production.',
       'They expanded their sound across albums and projects, experimenting with indie, alternative, and electronic textures while maintaining a strong pop sensibility.'
@@ -148,7 +208,11 @@ const artists = {
   'tiesto-bio': {
     title: 'Tiësto: The Ever-Evolving Mainstage Maestro',
     author: 'EchoWave Team • Oct 30, 2025',
+<<<<<<< HEAD
     img: 'https://www.billboard.com/wp-content/uploads/2023/01/Tiesto-2023-cr-Spinnin-Records-billboard-1548.jpg?w=942&h=628&crop=1',
+=======
+    img: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     content: [
       'Tiësto (Tijs Michiel Verwest) is a Dutch DJ and producer whose career spans decades, from trance pioneer to global mainstage icon. Known for adapting his sound across eras, Tiësto has remained relevant through relentless touring, production, and attention to audience connection.',
       'He\'s influenced generations of DJs and producers and continues to headline the world\'s largest festivals while mentoring new talent.'
@@ -157,4 +221,8 @@ const artists = {
   }
 };
 
+<<<<<<< HEAD
 export default artists;
+=======
+export default artists;
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4

@@ -8,6 +8,7 @@ import Bass from './pages/Bass';
 import Tomorrowland from './pages/Tomorrowland';
 import IbizaOpening from './pages/IbizaOpening';
 import EDCLasVegas from './pages/EDCLasVegas';
+<<<<<<< HEAD
 import Biography from './pages/Biography';
 import BiographiesList from './pages/BiographiesList';
 import Tickets from './pages/Tickets';
@@ -16,6 +17,8 @@ import TicketsCheckout from './pages/TicketsCheckout';
 import TravelAmsterdam from './pages/TravelAmsterdam';
 import TravelIbiza from './pages/TravelIbiza';
 import TravelTenerife from './pages/TravelTenerife';
+=======
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
 import articles from './data/articlesData';
 import artists from './data/artistsData';
 import latestPosts from './data/latestPosts';
@@ -44,10 +47,13 @@ function App() {
     if (page === 'amsterdam-page') return '/amsterdam';
     if (page === 'ibiza-page') return '/ibiza';
     if (page === 'tenerife-page') return '/tenerife';
+<<<<<<< HEAD
     if (page === 'tickets') return '/tickets';
     if (page === 'travel-amsterdam') return '/travel-amsterdam';
     if (page === 'travel-ibiza') return '/travel-ibiza';
     if (page === 'travel-tenerife') return '/travel-tenerife';
+=======
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     if (page === 'login') return '/login';
     if (page === 'signup') return '/signup';
     if (page.includes('-article')) return `/article/${page}`;
@@ -63,12 +69,15 @@ function App() {
     if (parts[0] === 'amsterdam') return 'amsterdam-page';
     if (parts[0] === 'ibiza') return 'ibiza-page';
     if (parts[0] === 'tenerife') return 'tenerife-page';
+<<<<<<< HEAD
     if (parts[0] === 'tickets') return 'tickets';
     if (parts[0] === 'travel-amsterdam') return 'travel-amsterdam';
     if (parts[0] === 'travel-ibiza') return 'travel-ibiza';
     if (parts[0] === 'travel-tenerife') return 'travel-tenerife';
     if (parts[0] && parts[0].startsWith('checkout-')) return parts[0];
     if (parts[0] && parts[0].startsWith('tickets-')) return parts[0];
+=======
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     if (parts[0] === 'login') return 'login';
     if (parts[0] === 'signup' || parts[0] === 'sign-up') return 'signup';
     return 'not-found';
@@ -252,12 +261,15 @@ function App() {
     );
   }
 
+<<<<<<< HEAD
   if (currentPage === 'tickets') {
     return (
       <TicketsLanding navigate={navigate} />
     );
   }
 
+=======
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
   if (currentPage === 'login') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center p-4">
@@ -670,6 +682,7 @@ function App() {
     return <Bass navigate={navigate} />;
   }
 
+<<<<<<< HEAD
   if (currentPage === 'biographies') {
     return <BiographiesList navigate={navigate} />;
   }
@@ -694,6 +707,12 @@ function App() {
   if (currentPage === 'travel-ibiza') return <TravelIbiza navigate={navigate} />;
   if (currentPage === 'travel-tenerife') return <TravelTenerife navigate={navigate} />;
 
+=======
+  if (currentPage.includes('article') || currentPage.includes('-bio')) {
+    return renderArticleOrBio(currentPage);
+  }
+
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="text-center">

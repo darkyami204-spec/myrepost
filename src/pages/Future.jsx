@@ -6,7 +6,11 @@ export default function Future({ navigate }) {
   const genreContent = {
     title: 'Future House: The Sound of Modern Dance Music',
     author: 'EchoWave Team • Dec 21, 2025',
+<<<<<<< HEAD
     img: 'https://www.resonance-sound.com/wp-content/uploads/2023/10/rs-future-edm-generations-vol.3-1000x1000__72dpi-768x768.jpg',
+=======
+    img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop&q=80',
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
     summary: 'Explore Future House, the genre that fuses house music with electro elements, creating an irresistible sound for dance floors worldwide.',
     content: [
       'Future House is a modern evolution of dance music that emerged in the early 2010s, capturing the energy of house music while incorporating elements of electro, funk, and pop. Characterized by catchy hooks, driving basslines, and high-energy drops, Future House dominates festival stages and club dance floors around the world.',
@@ -166,4 +170,8 @@ export default function Future({ navigate }) {
       <Footer />
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4

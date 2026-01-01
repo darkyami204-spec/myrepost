@@ -44,6 +44,24 @@ export default function EventIbiza({ navigate }) {
     }
   ];
 
+<<<<<<< HEAD
+=======
+  const eventDetails = {
+    description: [
+      "Ibiza Opening Parties mark the official start of the summer season on the White Isle. The world's most legendary clubs open their doors for the first time, setting the tone for an unforgettable season of electronic music.",
+      "From Pacha to Amnesia, Ushuaïa to Hï Ibiza, the opening parties feature exclusive lineups, stunning production, and an electric atmosphere that only Ibiza can deliver. This is where the global dance music community reunites after the winter break.",
+      "The opening weekend transforms the entire island into a non-stop celebration, with pool parties, boat parties, beach clubs, and afterhours sessions running around the clock. It's the most anticipated weekend in the electronic music calendar."
+    ]
+  };
+
+  const featuredArtists = [
+    { name: 'Calvin Harris', genre: 'EDM/Pop', bioKey: 'calvin-harris-bio' },
+    { name: 'The Chainsmokers', genre: 'Pop-EDM', bioKey: 'chainsmokers-bio' },
+    { name: 'Tiësto', genre: 'Progressive House', bioKey: 'tiesto-bio' },
+    { name: 'R3HAB', genre: 'Future House', bioKey: 'r3hab-bio' }
+  ];
+
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       {/* Header */}
@@ -105,6 +123,7 @@ export default function EventIbiza({ navigate }) {
                 </p>
               </div>
 
+<<<<<<< HEAD
               {/* Lineup Preview - ALL ARTISTS CLICKABLE */}
               <div className="mt-10">
                 <h3 className="font-bold text-xl mb-6">Featured Artists</h3>
@@ -169,6 +188,20 @@ export default function EventIbiza({ navigate }) {
                     <span className="ml-auto text-sm bg-red-100 text-red-600 px-3 py-1 rounded-full">Confirmed</span>
                   </div>
                 </div>
+=======
+            {/* Lineup Preview */}
+            <div className="mt-10">
+              <h3 className="font-bold text-xl mb-6">Featured Artists</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {featuredArtists.map((artist, index) => (
+                  <ArtistCard
+                    key={index}
+                    artist={artist}
+                    onClick={() => navigate(artist.bioKey)}
+                    confirmed={true}
+                  />
+                ))}
+>>>>>>> 14a745b47d1605977741684c88773018d0a304c4
               </div>
             </div>
           </div>
