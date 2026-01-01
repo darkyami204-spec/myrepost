@@ -104,6 +104,42 @@ export default function EventAmsterdam({ navigate }) {
 
           {/* Right Column - Sidebar */}
           <div className="space-y-8">
+            {/* Event Info: Tickets / Venue / Travel */}
+            <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+              <h3 className="font-bold text-lg mb-4">Event Info</h3>
+              <div className="space-y-4">
+                <div>
+                  <div className="text-sm text-gray-600 mb-2">Tickets</div>
+                  <div className="text-gray-800 mb-3">Official tickets and packages for Amsterdam Dance Event are available on our Tickets page.</div>
+                </div>
+
+                <div>
+                  <div className="text-sm text-gray-600 mb-2">Venue</div>
+                  <div className="rounded overflow-hidden mb-3 border">
+                    <iframe
+                      title="Amsterdam venues map"
+                      src="https://www.google.com/maps?q=Amsterdam&output=embed"
+                      className="w-full h-36"
+                      loading="lazy"
+                    />
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/d/u/0/viewer?mid=1V9_JcC3V38MT_c6GZHSXUv2THsM&ll=52.370216%2C4.895168&z=13"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-purple-600 hover:underline"
+                  >
+                    Open full venue map
+                  </a>
+                </div>
+
+                <div>
+                  <div className="text-sm text-gray-600 mb-2">Travel Guide</div>
+                  <p className="text-gray-800 mb-3">Event spans multiple venues across central Amsterdam — main hubs include the city centre, Jaarbeurs/Utrecht-area showcases and major arenas.</p>
+                  <button onClick={() => navigate('travel-amsterdam')} className="text-sm text-purple-600 hover:underline">View Travel Guide</button>
+                </div>
+              </div>
+            </div>
             {/* Related Events */}
             <div className="bg-gray-50 rounded-xl p-6">
               <h3 className="font-bold text-lg mb-4 flex items-center">
@@ -116,7 +152,9 @@ export default function EventAmsterdam({ navigate }) {
                     title: 'Tenerife EDM Festival 2025',
                     category: 'Winter Paradise',
                     location: 'Playa de las Américas',
-                    date: 'Dec 27-30, 2025'
+                    date: 'Dec 27-30, 2025',
+                    mapUrl: 'https://www.google.com/maps/d/u/0/viewer?mid=1FQn-V7C-RRj8Oc8as5SOrqRbtiU&ll=28.062343%2C-16.726051&z=13',
+                    travelUrl: 'https://www.google.com/travel/things-to-do?dest_mid=%2Fm%2F0cm36&dest_state_type=main&dest_src=yts&q=tenerife+travel+guide'
                   }}
                   onClick={() => navigate('tenerife-page')}
                 />
@@ -125,7 +163,9 @@ export default function EventAmsterdam({ navigate }) {
                     title: 'Ibiza Opening Parties 2025',
                     category: 'Summer Season',
                     location: 'Ibiza',
-                    date: 'May 2-4, 2025'
+                    date: 'May 2-4, 2025',
+                    mapUrl: 'https://www.google.com/maps/d/u/0/viewer?mid=1JHSHkIq0FUMYj7bGk_8Q1PZb8xQ&ll=38.916761%2C1.437954&z=12',
+                    travelUrl: 'https://www.google.com/travel/things-to-do?dest_mid=%2Fm%2F07_5j&dest_state_type=main&dest_src=yts&q=ibiza+travel+guide'
                   }}
                   onClick={() => navigate('ibiza-page')}
                 />
@@ -146,37 +186,7 @@ export default function EventAmsterdam({ navigate }) {
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-              <h3 className="font-bold text-lg mb-6">Essential Links</h3>
-              <div className="space-y-3">
-                <a href="#" className="flex items-center p-3 hover:bg-purple-50 rounded-lg transition duration-300 group">
-                  <span className="w-2 h-2 bg-purple-600 rounded-full mr-3 group-hover:scale-125 transition"></span>
-                  <span className="font-medium">Ticket Information</span>
-                  <span className="ml-auto text-purple-600">→</span>
-                </a>
-                <a 
-                  href="https://www.google.com/maps/d/u/0/viewer?mid=1V9_JcC3V38MT_c6GZHSXUv2THsM&ll=52.370216%2C4.895168&z=13" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center p-3 hover:bg-purple-50 rounded-lg transition duration-300 group"
-                >
-                  <span className="w-2 h-2 bg-purple-600 rounded-full mr-3 group-hover:scale-125 transition"></span>
-                  <span className="font-medium">Venue Map</span>
-                  <span className="ml-auto text-purple-600">→</span>
-                </a>
-                <a 
-                  href="https://www.google.com/travel/things-to-do?dest_mid=%2Fm%2F0212s&dest_state_type=main&dest_src=yts&q=amsterdam+travel+guide" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center p-3 hover:bg-purple-50 rounded-lg transition duration-300 group"
-                >
-                  <span className="w-2 h-2 bg-purple-600 rounded-full mr-3 group-hover:scale-125 transition"></span>
-                  <span className="font-medium">Travel Guide</span>
-                  <span className="ml-auto text-purple-600">→</span>
-                </a>
-              </div>
-            </div>
+            {/* Quick Links removed — Event Info card includes Tickets/Venue/Travel */}
           </div>
         </div>
       </main>

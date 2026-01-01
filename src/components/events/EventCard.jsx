@@ -37,6 +37,24 @@ export function FeaturedEventCard({ event, onClick }) {
         </span>
         <h1 className="text-3xl font-bold text-white">{event.title}</h1>
         <p className="text-gray-200 mt-2">{event.date} • {event.venue} • {event.location}</p>
+        <div className="mt-4 flex space-x-3">
+          {event.mapUrl && (
+            <button
+              onClick={(e) => { e.stopPropagation(); window.open(event.mapUrl, '_blank', 'noopener'); }}
+              className="text-sm bg-white/20 text-white px-3 py-2 rounded hover:bg-white/30"
+            >
+              View Map
+            </button>
+          )}
+          {event.travelUrl && (
+            <button
+              onClick={(e) => { e.stopPropagation(); window.open(event.travelUrl, '_blank', 'noopener'); }}
+              className="text-sm bg-white/20 text-white px-3 py-2 rounded hover:bg-white/30"
+            >
+              Travel Guide
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -60,7 +78,25 @@ export function RelatedEventCard({ event, onClick }) {
         </span>
       </div>
       <div className="flex items-center mt-2 text-sm text-gray-500">
-        <span>📍 {event.location} • {event.date}</span>
+        <span className="mr-3">📍 {event.location} • {event.date}</span>
+        <div className="ml-auto flex items-center space-x-2">
+          {event.mapUrl && (
+            <button
+              onClick={(e) => { e.stopPropagation(); window.open(event.mapUrl, '_blank', 'noopener'); }}
+              className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+            >
+              Map
+            </button>
+          )}
+          {event.travelUrl && (
+            <button
+              onClick={(e) => { e.stopPropagation(); window.open(event.travelUrl, '_blank', 'noopener'); }}
+              className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+            >
+              Travel
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

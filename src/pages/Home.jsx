@@ -1,9 +1,9 @@
+// In src/pages/Home.jsx
 import React from 'react';
 import Navigation from '../components/common/Navigation';
 import Footer from '../components/common/Footer';
 import { CompactArticleCard } from '../components/articles/ArticleCard';
 import ArticleCard from '../components/articles/ArticleCard';
-
 export default function Home({ navigate, articles }) {
   const latestPosts = [
     {

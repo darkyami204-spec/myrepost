@@ -381,6 +381,26 @@ function Signup({ onNavigate }) {
               </button>
             </div>
 
+            <div className="space-y-3 mt-4">
+              <button
+                type="button"
+                onClick={() => handleSocialSignup('Spotify')}
+                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+              >
+                <span className="mr-2">🎵</span>
+                <span className="font-medium text-gray-700">Continue with Spotify</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleSocialSignup('SoundCloud')}
+                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+              >
+                <span className="mr-2">🔗</span>
+                <span className="font-medium text-gray-700">Continue with SoundCloud</span>
+              </button>
+            </div>
+
             {/* Login Link */}
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">

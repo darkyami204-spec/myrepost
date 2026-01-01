@@ -80,12 +80,12 @@ export default function Navigation({ navigate }) {
             )}
           </div>
 
-          <a 
-            href="#" 
+          <button
+            onClick={() => navigate('tickets')}
             className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
           >
-            Playlist
-          </a>
+            Tickets
+          </button>
 
           {/* EXCLUSIVES DROPDOWN */}
           <div
@@ -98,12 +98,7 @@ export default function Navigation({ navigate }) {
             </button>
             {exclusivesOpen && (
               <div className="absolute right-0 top-full w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
-                <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-100">
-                  Biography
-                </a>
-                <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-100">
-                  Discounts
-                </a>
+                <button onClick={() => navigate('biographies')} className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Biography</button>
               </div>
             )}
           </div>
