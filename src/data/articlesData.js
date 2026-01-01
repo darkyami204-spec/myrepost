@@ -46,8 +46,7 @@ const articles = {
   }
 };
 
-<<<<<<< HEAD
+
 export default articles;
-=======
-export default articles;
->>>>>>> 14a745b47d1605977741684c88773018d0a304c4
+
+

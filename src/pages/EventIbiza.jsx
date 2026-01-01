@@ -44,8 +44,7 @@ export default function EventIbiza({ navigate }) {
     }
   ];
 
-<<<<<<< HEAD
-=======
+
   const eventDetails = {
     description: [
       "Ibiza Opening Parties mark the official start of the summer season on the White Isle. The world's most legendary clubs open their doors for the first time, setting the tone for an unforgettable season of electronic music.",
@@ -61,10 +60,9 @@ export default function EventIbiza({ navigate }) {
     { name: 'R3HAB', genre: 'Future House', bioKey: 'r3hab-bio' }
   ];
 
->>>>>>> 14a745b47d1605977741684c88773018d0a304c4
+
   return (
     <div className="min-h-screen bg-white text-black font-sans">
-      {/* Header */}
       <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</h1>
@@ -123,92 +121,23 @@ export default function EventIbiza({ navigate }) {
                 </p>
               </div>
 
-<<<<<<< HEAD
-              {/* Lineup Preview - ALL ARTISTS CLICKABLE */}
               <div className="mt-10">
                 <h3 className="font-bold text-xl mb-6">Featured Artists</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* R3hab - Clickable */}
-                  <div 
-                    onClick={() => navigate('r3hab-bio')}
-                    className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center mr-4">
-                      <span className="text-pink-600 font-bold text-lg">R</span>
-                    </div>
-                    <div>
-                      <span className="font-semibold text-lg hover:text-pink-600">R3hab</span>
-                      <div className="text-sm text-gray-500">Big-Room House</div>
-                    </div>
-                    <span className="ml-auto text-sm bg-pink-100 text-pink-600 px-3 py-1 rounded-full">Confirmed</span>
-                  </div>
-                  
-                  {/* Calvin Harris - Clickable */}
-                  <div 
-                    onClick={() => navigate('calvin-harris-bio')}
-                    className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold text-lg">C</span>
-                    </div>
-                    <div>
-                      <span className="font-semibold text-lg hover:text-blue-600">Calvin Harris</span>
-                      <div className="text-sm text-gray-500">EDM/Pop</div>
-                    </div>
-                    <span className="ml-auto text-sm bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Confirmed</span>
-                  </div>
-                  
-                  {/* The Chainsmokers - Clickable */}
-                  <div 
-                    onClick={() => navigate('chainsmokers-bio')}
-                    className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
-                      <span className="text-green-600 font-bold text-lg">T</span>
-                    </div>
-                    <div>
-                      <span className="font-semibold text-lg hover:text-green-600">The Chainsmokers</span>
-                      <div className="text-sm text-gray-500">Pop-EDM</div>
-                    </div>
-                    <span className="ml-auto text-sm bg-green-100 text-green-600 px-3 py-1 rounded-full">Confirmed</span>
-                  </div>
-                  
-                  {/* Tiësto - Clickable */}
-                  <div 
-                    onClick={() => navigate('tiesto-bio')}
-                    className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
-                      <span className="text-red-600 font-bold text-lg">T</span>
-                    </div>
-                    <div>
-                      <span className="font-semibold text-lg hover:text-red-600">Tiësto</span>
-                      <div className="text-sm text-gray-500">EDM/Trance</div>
-                    </div>
-                    <span className="ml-auto text-sm bg-red-100 text-red-600 px-3 py-1 rounded-full">Confirmed</span>
-                  </div>
+                  {featuredArtists.map((artist, index) => (
+                    <ArtistCard
+                      key={index}
+                      artist={artist}
+                      onClick={() => navigate(artist.bioKey)}
+                      confirmed={true}
+                    />
+                  ))}
                 </div>
-=======
-            {/* Lineup Preview */}
-            <div className="mt-10">
-              <h3 className="font-bold text-xl mb-6">Featured Artists</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {featuredArtists.map((artist, index) => (
-                  <ArtistCard
-                    key={index}
-                    artist={artist}
-                    onClick={() => navigate(artist.bioKey)}
-                    confirmed={true}
-                  />
-                ))}
->>>>>>> 14a745b47d1605977741684c88773018d0a304c4
               </div>
             </div>
           </div>
 
-          {/* Right Column - Sidebar */}
-          <div className="space-y-8">
-            {/* Event Info: Tickets / Venue / Travel */}
+          <aside className="space-y-8">
             <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
               <h3 className="font-bold text-lg mb-4">Event Info</h3>
               <div className="space-y-4">
@@ -244,7 +173,7 @@ export default function EventIbiza({ navigate }) {
                 </div>
               </div>
             </div>
-            {/* Related Events */}
+
             <div className="bg-gray-50 rounded-xl p-6">
               <h3 className="font-bold text-lg mb-4 flex items-center">
                 <span className="w-2 h-5 bg-blue-600 rounded-full mr-2"></span>
@@ -280,8 +209,7 @@ export default function EventIbiza({ navigate }) {
                     </div>
                   </div>
                 </div>
-                
-                {/* Tenerife Event */}
+
                 <div 
                   onClick={() => navigate('tenerife-page')}
                   className="p-4 bg-white rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98]"
@@ -338,9 +266,7 @@ export default function EventIbiza({ navigate }) {
                 ))}
               </div>
             </div>
-
-            {/* Quick Links removed — Event Info card includes Tickets/Venue/Travel */}
-          </div>
+          </aside>
         </div>
       </main>
 
@@ -348,3 +274,4 @@ export default function EventIbiza({ navigate }) {
     </div>
   );
 }
+

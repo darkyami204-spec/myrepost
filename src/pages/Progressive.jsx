@@ -6,11 +6,9 @@ export default function Progressive({ navigate }) {
   const genreContent = {
     title: 'Progressive House: The Evolution of Electronic Music',
     author: 'EchoWave Team • Dec 20, 2025',
-<<<<<<< HEAD
+
     img: 'https://geo-media.beatsource.com/image_size/500x500/a/c/3/ac35d43e-19aa-4355-9693-2aba1ec8f513.jpg',
-=======
-    img: 'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=1200&h=600&fit=crop&q=80',
->>>>>>> 14a745b47d1605977741684c88773018d0a304c4
+
     summary: 'Discover the roots, evolution, and future of Progressive House, the genre that continues to shape modern electronic music.',
     content: [
       'Progressive House is more than just a genre—it\'s a philosophy of musical storytelling. Characterized by slow builds, layered elements, and extended track structures, Progressive House creates immersive journeys that can last 8-12 minutes or longer, taking listeners on an emotional and sonic expedition.',
@@ -168,8 +166,6 @@ export default function Progressive({ navigate }) {
       <Footer />
     </div>
   );
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 14a745b47d1605977741684c88773018d0a304c4
+
