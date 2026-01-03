@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import LoginSuccess from './pages/LoginSuccess';
 import SignUp from './pages/SignUp';
+import Discounts from './pages/Discounts';
 import TicketsLanding from './pages/TicketsLanding';
 import Tickets from './pages/Tickets';
 import TicketsCheckout from './pages/TicketsCheckout';
@@ -40,6 +41,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/login-success" element={<LoginSuccess />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/discounts" element={<Discounts />} />
 
         {/* EVENTS */}
         <Route path="/amsterdam" element={<EventAmsterdam />} />

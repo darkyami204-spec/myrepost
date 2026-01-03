@@ -75,7 +75,7 @@ export default function Header() {
             {exclusivesOpen && (
               <div className="absolute right-0 top-full w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
                 <Link to="/biographies" className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Biography</Link>
-                <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-100">Discounts</a>
+                <Link to="/discounts" className="block px-4 py-2 text-sm hover:bg-gray-100">Discounts</Link>
               </div>
             )}
           </div>
