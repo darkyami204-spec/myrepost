@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import { EventDetails } from '../components/events/EventCard';
 import ArtistCard from '../components/events/ArtistCard';
 import { ProducerCard } from '../components/events/ArtistCard';
 
-export default function EventTenerife({ navigate }) {
+export default function EventTenerife() {
   const producers = [
     { 
       name: 'Afrojack', 
@@ -49,15 +50,15 @@ export default function EventTenerife({ navigate }) {
       {/* Header */}
       <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</h1>
+          <Link to="/" className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</Link>
 
           <div className="flex space-x-4 items-center">
-            <button
-              onClick={() => navigate('home')}
+            <Link
+              to="/"
               className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
             >
               Home
-            </button>
+            </Link>
           </div>
         </div>
       </nav>
@@ -108,64 +109,60 @@ export default function EventTenerife({ navigate }) {
                 <h3 className="font-bold text-xl mb-6">Featured Artists</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Afrojack - Clickable */}
-                  <div 
-                    onClick={() => navigate('afrojack-bio')}
-                    className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
-                      <span className="text-yellow-600 font-bold text-lg">A</span>
+                  <Link to="/biography/afrojack-bio">
+                    <div className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]">
+                      <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
+                        <span className="text-yellow-600 font-bold text-lg">A</span>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-lg hover:text-yellow-600">Afrojack</span>
+                        <div className="text-sm text-gray-500">Electro House</div>
+                      </div>
+                      <span className="ml-auto text-sm bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full">Confirmed</span>
                     </div>
-                    <div>
-                      <span className="font-semibold text-lg hover:text-yellow-600">Afrojack</span>
-                      <div className="text-sm text-gray-500">Electro House</div>
-                    </div>
-                    <span className="ml-auto text-sm bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full">Confirmed</span>
-                  </div>
+                  </Link>
                   
                   {/* Zedd - Clickable */}
-                  <div 
-                    onClick={() => navigate('zedd-bio')}
-                    className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold text-lg">Z</span>
+                  <Link to="/biography/zedd-bio">
+                    <div className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]">
+                      <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                        <span className="text-blue-600 font-bold text-lg">Z</span>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-lg hover:text-blue-600">Zedd</span>
+                        <div className="text-sm text-gray-500">Progressive House</div>
+                      </div>
+                      <span className="ml-auto text-sm bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Confirmed</span>
                     </div>
-                    <div>
-                      <span className="font-semibold text-lg hover:text-blue-600">Zedd</span>
-                      <div className="text-sm text-gray-500">Progressive House</div>
-                    </div>
-                    <span className="ml-auto text-sm bg-blue-100 text-blue-600 px-3 py-1 rounded-full">Confirmed</span>
-                  </div>
+                  </Link>
                   
                   {/* Alesso - Clickable */}
-                  <div 
-                    onClick={() => navigate('alesso-bio')}
-                    className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
-                      <span className="text-red-600 font-bold text-lg">A</span>
+                  <Link to="/biography/alesso-bio">
+                    <div className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]">
+                      <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                        <span className="text-red-600 font-bold text-lg">A</span>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-lg hover:text-red-600">Alesso</span>
+                        <div className="text-sm text-gray-500">Progressive House</div>
+                      </div>
+                      <span className="ml-auto text-sm bg-red-100 text-red-600 px-3 py-1 rounded-full">Confirmed</span>
                     </div>
-                    <div>
-                      <span className="font-semibold text-lg hover:text-red-600">Alesso</span>
-                      <div className="text-sm text-gray-500">Progressive House</div>
-                    </div>
-                    <span className="ml-auto text-sm bg-red-100 text-red-600 px-3 py-1 rounded-full">Confirmed</span>
-                  </div>
+                  </Link>
                   
                   {/* Kygo - Clickable */}
-                  <div 
-                    onClick={() => navigate('kygo-bio')}
-                    className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
-                      <span className="text-green-600 font-bold text-lg">K</span>
+                  <Link to="/biography/kygo-bio">
+                    <div className="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition duration-300 cursor-pointer active:scale-[0.98]">
+                      <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                        <span className="text-green-600 font-bold text-lg">K</span>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-lg hover:text-green-600">Kygo</span>
+                        <div className="text-sm text-gray-500">Tropical House</div>
+                      </div>
+                      <span className="ml-auto text-sm bg-green-100 text-green-600 px-3 py-1 rounded-full">Confirmed</span>
                     </div>
-                    <div>
-                      <span className="font-semibold text-lg hover:text-green-600">Kygo</span>
-                      <div className="text-sm text-gray-500">Tropical House</div>
-                    </div>
-                    <span className="ml-auto text-sm bg-green-100 text-green-600 px-3 py-1 rounded-full">Confirmed</span>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -205,7 +202,7 @@ export default function EventTenerife({ navigate }) {
                 <div>
                   <div className="text-sm text-gray-600 mb-2">Travel Guide</div>
                   <p className="text-gray-800 mb-3">Events are centered around Playa de las Américas and nearby beachfront venues — plan for beaches and short transfers between sites.</p>
-                  <button onClick={() => navigate('travel-tenerife')} className="text-sm text-orange-600 hover:underline">View Travel Guide</button>
+                  <Link to="/travel-tenerife" className="text-sm text-orange-600 hover:underline">View Travel Guide</Link>
                 </div>
               </div>
             </div>
@@ -217,65 +214,64 @@ export default function EventTenerife({ navigate }) {
               </h3>
               <div className="space-y-4">
                 {/* Amsterdam Event */}
-                <div 
-                
-                  onClick={() => navigate('amsterdam-page')}
-                  className="p-4 bg-white rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98]"
-                >
-                  <div className="flex justify-between items-start">
-                    <h4 className="font-medium text-gray-900">Amsterdam Dance Event 2025</h4>
-                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">
-                      Featured Event
-                    </span>
-                  </div>
-                  <div className="flex items-center mt-2 text-sm text-gray-500">
-                    <span className="mr-3">📍 Amsterdam • Oct 15-19, 2025</span>
-                    <div className="ml-auto flex items-center space-x-2">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); window.open('https://www.google.com/maps/d/u/0/viewer?mid=1V9_JcC3V38MT_c6GZHSXUv2THsM&ll=52.370216%2C4.895168&z=13', '_blank', 'noopener'); }}
-                        className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
-                      >
-                        Map
-                      </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); navigate('travel-amsterdam'); }}
-                        className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
-                      >
-                        Travel
-                      </button>
+                <Link to="/amsterdam-event">
+                  <div className="p-4 bg-white rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98]">
+                    <div className="flex justify-between items-start">
+                      <h4 className="font-medium text-gray-900">Amsterdam Dance Event 2025</h4>
+                      <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">
+                        Featured Event
+                      </span>
+                    </div>
+                    <div className="flex items-center mt-2 text-sm text-gray-500">
+                      <span className="mr-3">📍 Amsterdam • Oct 15-19, 2025</span>
+                      <div className="ml-auto flex items-center space-x-2">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); window.open('https://www.google.com/maps/d/u/0/viewer?mid=1V9_JcC3V38MT_c6GZHSXUv2THsM&ll=52.370216%2C4.895168&z=13', '_blank', 'noopener'); }}
+                          className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+                        >
+                          Map
+                        </button>
+                        <Link
+                          to="/travel-amsterdam"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+                        >
+                          Travel
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
                 
                 {/* Ibiza Event */}
-                <div 
-                  onClick={() => navigate('ibiza-page')}
-                  className="p-4 bg-white rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98]"
-                >
-                  <div className="flex justify-between items-start">
-                    <h4 className="font-medium text-gray-900">Ibiza Opening Parties 2025</h4>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">
-                      Summer Season
-                    </span>
-                  </div>
-                  <div className="flex items-center mt-2 text-sm text-gray-500">
-                    <span className="mr-3">📍 Ibiza • May 2-4, 2025</span>
-                    <div className="ml-auto flex items-center space-x-2">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); window.open('https://www.google.com/maps/d/u/0/viewer?mid=1JHSHkIq0FUMYj7bGk_8Q1PZb8xQ&ll=38.916761%2C1.437954&z=12', '_blank', 'noopener'); }}
-                        className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
-                      >
-                        Map
-                      </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); navigate('travel-ibiza'); }}
-                        className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
-                      >
-                        Travel
-                      </button>
+                <Link to="/ibiza-opening">
+                  <div className="p-4 bg-white rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98]">
+                    <div className="flex justify-between items-start">
+                      <h4 className="font-medium text-gray-900">Ibiza Opening Parties 2025</h4>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">
+                        Summer Season
+                      </span>
+                    </div>
+                    <div className="flex items-center mt-2 text-sm text-gray-500">
+                      <span className="mr-3">📍 Ibiza • May 2-4, 2025</span>
+                      <div className="ml-auto flex items-center space-x-2">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); window.open('https://www.google.com/maps/d/u/0/viewer?mid=1JHSHkIq0FUMYj7bGk_8Q1PZb8xQ&ll=38.916761%2C1.437954&z=12', '_blank', 'noopener'); }}
+                          className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+                        >
+                          Map
+                        </button>
+                        <Link
+                          to="/travel-ibiza"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+                        >
+                          Travel
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
 
@@ -284,23 +280,21 @@ export default function EventTenerife({ navigate }) {
               <h3 className="font-bold text-lg mb-6">International Superstars</h3>
               <div className="space-y-4">
                 {producers.map((producer, index) => (
-                  <div 
-                    key={index} 
-                    onClick={() => navigate(producer.bioKey)}
-                    className="flex items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98] select-none"
-                  >
-                    <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${producer.color} flex items-center justify-center text-white font-bold text-sm mr-4`}>
-                      {producer.name.split(' ').map(n => n[0]).join('')}
+                  <Link key={index} to={`/biography/${producer.bioKey}`}>
+                    <div className="flex items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98] select-none">
+                      <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${producer.color} flex items-center justify-center text-white font-bold text-sm mr-4`}>
+                        {producer.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold text-gray-900">{producer.name}</div>
+                        <div className="text-sm text-gray-600">{producer.genre}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs text-gray-500">Followers</div>
+                        <div className="font-bold text-gray-900">{producer.followers}</div>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <div className="font-semibold text-gray-900">{producer.name}</div>
-                      <div className="text-sm text-gray-600">{producer.genre}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xs text-gray-500">Followers</div>
-                      <div className="font-bold text-gray-900">{producer.followers}</div>
-                    </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

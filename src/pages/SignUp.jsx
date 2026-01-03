@@ -1,38 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Signup({ onNavigate }) {
-  const [formData, setFormData] = useState({
-    fullName: '',
+function SignUp() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = React.useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    confirmPassword: ''
   });
-  const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    // Clear error for this field when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
-  };
+  const [errors, setErrors] = React.useState({});
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [agreedToTerms, setAgreedToTerms] = React.useState(false);
 
   const validateForm = () => {
     const newErrors = {};
 
-    // Full Name validation
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full name is required';
-    } else if (formData.fullName.trim().length < 2) {
-      newErrors.fullName = 'Name must be at least 2 characters';
+    // First Name validation
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    }
+
+    // Last Name validation
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
     }
 
     // Email validation
@@ -77,7 +69,7 @@ function Signup({ onNavigate }) {
       setTimeout(() => {
         setIsLoading(false);
         alert('Account created successfully! (This is a demo)');
-        onNavigate('home');
+        navigate('/');
       }, 1500);
     }
   };
@@ -109,344 +101,246 @@ function Signup({ onNavigate }) {
       {/* Navigation */}
       <nav className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-          <h1 
+          <Link
+            to="/"
             className="text-2xl font-bold tracking-wide text-purple-600 cursor-pointer"
-            onClick={() => onNavigate('home')}
           >
             EchoWave
-          </h1>
-          <button
-            onClick={() => onNavigate('home')}
+          </Link>
+          <Link
+            to="/"
             className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
           >
             ← Back to Home
-          </button>
+          </Link>
         </div>
       </nav>
 
-      {/* Signup Form */}
-      <div className="flex items-center justify-center px-4 py-12">
-        <div className="max-w-md w-full">
-          {/* Header */}
+      <div className="max-w-md mx-auto py-12 px-6">
+        <div className="bg-white rounded-xl shadow-lg p-8">
           <div className="text-center mb-8">
-            <h2 className="text-4xl font-extrabold mb-2">Create Account</h2>
-            <p className="text-gray-600">Join EchoWave and discover amazing EDM content</p>
+            <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
+            <p className="text-gray-600 mt-2">Join the EDM community</p>
           </div>
 
-          {/* Form Card */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Full Name Field */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Full Name
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  First Name
                 </label>
                 <input
                   type="text"
-                  id="fullName"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 border ${
-                    errors.fullName ? 'border-red-500' : 'border-gray-300'
-                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition`}
-                  placeholder="John Doe"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition"
+                  placeholder="John"
                 />
-                {errors.fullName && (
-                  <p className="mt-1 text-sm text-red-500">{errors.fullName}</p>
-                )}
+                {errors.firstName && <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>}
               </div>
-
-              {/* Email Field */}
               <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Email Address
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Last Name
                 </label>
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 border ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition`}
-                  placeholder="you@example.com"
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition"
+                  placeholder="Doe"
                 />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
-                )}
+                {errors.lastName && <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>}
               </div>
+            </div>
 
-              {/* Password Field */}
-              <div>
-                <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Password
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-3 border ${
-                      errors.password ? 'border-red-500' : 'border-gray-300'
-                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition`}
-                    placeholder="Create a strong password"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                  >
-                    {showPassword ? '👁️' : '👁️‍🗨️'}
-                  </button>
-                </div>
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-500">{errors.password}</p>
-                )}
-                
-                {/* Password Strength Indicator */}
-                {formData.password && (
-                  <div className="mt-2">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-gray-600">Password strength</span>
-                      <span className={`text-xs font-semibold ${
-                        passwordStrength.label === 'Weak' ? 'text-red-500' :
-                        passwordStrength.label === 'Medium' ? 'text-yellow-500' : 'text-green-500'
-                      }`}>
-                        {passwordStrength.label}
-                      </span>
-                    </div>
-                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full ${passwordStrength.color} transition-all duration-300`}
-                        style={{ width: `${passwordStrength.strength}%` }}
-                      ></div>
-                    </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition"
+                placeholder="you@example.com"
+              />
+              {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition"
+                placeholder="••••••••"
+              />
+              {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password}</p>}
+              {formData.password && (
+                <div className="mt-2">
+                  <div className="flex justify-between text-sm mb-1">
+                    <span>Password Strength</span>
+                    <span className={`font-medium ${passwordStrength.label === 'Weak' ? 'text-red-600' : passwordStrength.label === 'Medium' ? 'text-yellow-600' : 'text-green-600'}`}>
+                      {passwordStrength.label}
+                    </span>
                   </div>
-                )}
-              </div>
-
-              {/* Confirm Password Field */}
-              <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Confirm Password
-                </label>
-                <div className="relative">
-                  <input
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-3 border ${
-                      errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
-                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition`}
-                    placeholder="Confirm your password"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                  >
-                    {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
-                  </button>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      className={`h-2 rounded-full ${passwordStrength.color}`}
+                      style={{ width: `${passwordStrength.strength}%` }}
+                    ></div>
+                  </div>
                 </div>
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-500">{errors.confirmPassword}</p>
-                )}
-              </div>
+              )}
+            </div>
 
-              {/* Terms and Conditions */}
-              <div>
-                <label className="flex items-start">
-                  <input
-                    type="checkbox"
-                    checked={agreedToTerms}
-                    onChange={(e) => setAgreedToTerms(e.target.checked)}
-                    className="w-4 h-4 mt-1 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
-                  />
-                  <span className="ml-2 text-sm text-gray-700">
-                    I agree to the{' '}
-                    <a href="#" className="text-purple-600 hover:text-purple-700 font-medium">
-                      Terms of Service
-                    </a>{' '}
-                    and{' '}
-                    <a href="#" className="text-purple-600 hover:text-purple-700 font-medium">
-                      Privacy Policy
-                    </a>
-                  </span>
-                </label>
-                {errors.terms && (
-                  <p className="mt-1 text-sm text-red-500">{errors.terms}</p>
-                )}
-              </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition"
+                placeholder="••••••••"
+              />
+              {errors.confirmPassword && <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>}
+            </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isLoading}
-                className={`w-full py-3 rounded-lg font-semibold text-white transition ${
-                  isLoading
-                    ? 'bg-purple-400 cursor-not-allowed'
-                    : 'bg-purple-600 hover:bg-purple-700'
-                }`}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Favorite Music Genre
+              </label>
+              <select
+                name="genre"
+                value={formData.genre}
+                onChange={(e) => setFormData({...formData, genre: e.target.value})}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition"
               >
-                {isLoading ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                        fill="none"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      />
-                    </svg>
-                    Creating account...
-                  </span>
-                ) : (
-                  'Create Account'
-                )}
-              </button>
-            </form>
+                <option value="">Select a genre</option>
+                <option value="house">House</option>
+                <option value="techno">Techno</option>
+                <option value="trance">Trance</option>
+                <option value="dubstep">Dubstep</option>
+                <option value="drum-and-bass">Drum & Bass</option>
+                <option value="progressive">Progressive</option>
+              </select>
+            </div>
 
-            {/* Divider */}
-            <div className="relative my-6">
+            <div>
+              <label className="flex items-start">
+                <input
+                  type="checkbox"
+                  checked={agreedToTerms}
+                  onChange={(e) => setAgreedToTerms(e.target.checked)}
+                  className="mt-1 rounded text-purple-600 focus:ring-purple-600"
+                />
+                <span className="ml-2 text-sm text-gray-700">
+                  I agree to the{' '}
+                  <a href="#" className="text-purple-600 hover:text-purple-800">
+                    Terms of Service
+                  </a>{' '}
+                  and{' '}
+                  <a href="#" className="text-purple-600 hover:text-purple-800">
+                    Privacy Policy
+                  </a>
+                </span>
+              </label>
+              {errors.terms && <p className="mt-1 text-sm text-red-600">{errors.terms}</p>}
+            </div>
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-3 rounded-lg hover:shadow-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isLoading ? 'Creating Account...' : 'Create Account'}
+            </button>
+          </form>
+
+          <div className="mt-8">
+            <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-500">Or sign up with</span>
+                <span className="px-2 bg-white text-gray-500">Or continue with</span>
               </div>
             </div>
 
-            {/* Social Signup Buttons */}
-            <div className="space-y-3">
+            <div className="mt-6 grid grid-cols-2 gap-3">
               <button
-                type="button"
                 onClick={() => handleSocialSignup('Google')}
-                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition"
               >
-                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
-                  <path
-                    fill="#4285F4"
-                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                  />
-                  <path
-                    fill="#EA4335"
-                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                  />
+                <svg className="w-5 h-5" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                <span className="font-medium text-gray-700">Continue with Google</span>
+                <span className="ml-2">Google</span>
               </button>
-
               <button
-                type="button"
                 onClick={() => handleSocialSignup('Facebook')}
-                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition"
               >
-                <svg className="w-5 h-5 mr-2" fill="#1877F2" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
-                <span className="font-medium text-gray-700">Continue with Facebook</span>
+                <span className="ml-2">Facebook</span>
               </button>
-
-              <button
-                type="button"
-                onClick={() => handleSocialSignup('Apple')}
-                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
-              >
-                <svg className="w-5 h-5 mr-2" fill="#000000" viewBox="0 0 24 24">
-                  <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
-                </svg>
-                <span className="font-medium text-gray-700">Continue with Apple</span>
-              </button>
-            </div>
-
-            <div className="space-y-3 mt-4">
-              <button
-                type="button"
-                onClick={() => handleSocialSignup('Spotify')}
-                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
-              >
-                <span className="mr-2">🎵</span>
-                <span className="font-medium text-gray-700">Continue with Spotify</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleSocialSignup('SoundCloud')}
-                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
-              >
-                <span className="mr-2">🔗</span>
-                <span className="font-medium text-gray-700">Continue with SoundCloud</span>
-              </button>
-            </div>
-
-            {/* Login Link */}
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
-                Already have an account?{' '}
-                <button
-                  onClick={() => onNavigate('login')}
-                  className="text-purple-600 hover:text-purple-700 font-semibold"
-                >
-                  Sign in
-                </button>
-              </p>
             </div>
           </div>
 
-          {/* Security Notice */}
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <div className="flex items-start">
-              <span className="text-blue-600 text-xl mr-3">🔒</span>
-              <div>
-                <h4 className="text-sm font-semibold text-blue-900 mb-1">Your data is secure</h4>
-                <p className="text-xs text-blue-700">
-                  We use industry-standard encryption to protect your personal information and will never share your data with third parties.
-                </p>
-              </div>
+          {/* Login Link */}
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600">
+              Already have an account?{' '}
+              <Link
+                to="/login"
+                className="text-purple-600 hover:text-purple-700 font-semibold"
+              >
+                Sign in
+              </Link>
+            </p>
+          </div>
+        </div>
+
+        {/* Security Notice */}
+        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <div className="flex items-start">
+            <span className="text-blue-600 text-xl mr-3">🔒</span>
+            <div>
+              <h4 className="font-semibold text-blue-900">Secure Registration</h4>
+              <p className="text-sm text-blue-700 mt-1">
+                Your information is encrypted and secure. We never share your data with third parties.
+              </p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 px-8 py-6 text-center text-sm text-gray-600">
+      <footer className="border-t border-gray-200 px-8 py-6 text-center text-sm text-gray-600 mt-12">
         <p>© 2025 EchoWave. All rights reserved.</p>
         <div className="flex justify-center space-x-4 mt-2">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">
-            Instagram
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">
-            Twitter
-          </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">
-            Facebook
-          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">Instagram</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">Twitter</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600">Facebook</a>
         </div>
       </footer>
     </div>
   );
 }
 
-export default Signup;
+export default SignUp;

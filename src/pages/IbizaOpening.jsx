@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
-export default function IbizaOpening({ navigate }) {
+export default function IbizaOpening() {
+  const navigate = useNavigate();
   const post = {
     title: 'Ibiza Opening Parties 2025',
     author: 'EchoWave Team • Dec 10, 2025',
@@ -29,11 +31,11 @@ export default function IbizaOpening({ navigate }) {
 
   return (
     <div className="min-h-screen bg-white text-black font-sans">
-      <Header navigate={navigate} />
+      <Header />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <button
-          onClick={() => navigate('home')}
+          onClick={() => navigate('/')}
           className="flex items-center text-purple-600 hover:text-purple-800 mb-8 group"
         >
           <span className="mr-2 group-hover:-translate-x-1 transition-transform">←</span>

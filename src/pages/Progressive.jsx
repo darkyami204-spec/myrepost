@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
-export default function Progressive({ navigate }) {
+export default function Progressive() {
   const genreContent = {
     title: 'Progressive House: The Evolution of Electronic Music',
     author: 'EchoWave Team • Dec 20, 2025',
@@ -58,16 +59,16 @@ export default function Progressive({ navigate }) {
 
   return (
     <div className="min-h-screen bg-white text-black font-sans">
-      <Header navigate={navigate} />
+      <Header />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <button
-          onClick={() => navigate('home')}
+        <Link
+          to="/"
           className="flex items-center text-purple-600 hover:text-purple-800 mb-8 group"
         >
           <span className="mr-2 group-hover:-translate-x-1 transition-transform">←</span>
           Back
-        </button>
+        </Link>
 
         <header className="mb-10">
           <div className="flex items-center text-sm text-gray-500 mb-4">
@@ -143,22 +144,20 @@ export default function Progressive({ navigate }) {
         <div className="border-t border-gray-200 pt-8">
           <h4 className="font-bold text-2xl mb-8">Explore More Genres</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div 
-              onClick={() => navigate('future-page')}
-              className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition cursor-pointer"
-            >
-              <h5 className="font-bold text-lg mb-2 hover:text-purple-600">Future House</h5>
-              <p className="text-gray-600 text-sm mb-4">Discover the high-energy sound that blends house and electro elements.</p>
-              <div className="text-xs text-gray-500">Coming Soon</div>
-            </div>
-            <div 
-              onClick={() => navigate('bass-page')}
-              className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition cursor-pointer"
-            >
-              <h5 className="font-bold text-lg mb-2 hover:text-purple-600">Bass House</h5>
-              <p className="text-gray-600 text-sm mb-4">Explore the deep, heavy sounds that define modern underground electronic music.</p>
-              <div className="text-xs text-gray-500">Coming Soon</div>
-            </div>
+            <Link to="/future">
+              <div className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition cursor-pointer">
+                <h5 className="font-bold text-lg mb-2 hover:text-purple-600">Future House</h5>
+                <p className="text-gray-600 text-sm mb-4">Discover the high-energy sound that blends house and electro elements.</p>
+                <div className="text-xs text-gray-500">Coming Soon</div>
+              </div>
+            </Link>
+            <Link to="/bass">
+              <div className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition cursor-pointer">
+                <h5 className="font-bold text-lg mb-2 hover:text-purple-600">Bass House</h5>
+                <p className="text-gray-600 text-sm mb-4">Explore the deep, heavy sounds that define modern underground electronic music.</p>
+                <div className="text-xs text-gray-500">Coming Soon</div>
+              </div>
+            </Link>
           </div>
         </div>
       </main>

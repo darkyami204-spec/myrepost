@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
@@ -41,7 +42,10 @@ const EVENTS = {
   }
 };
 
-export default function Tickets({ ticketKey, navigate }) {
+export default function Tickets() {
+  const navigate = useNavigate();
+  const { ticketId } = useParams();
+  const ticketKey = ticketId;
   const event = EVENTS[ticketKey];
 
   if (!event) {
@@ -49,7 +53,7 @@ export default function Tickets({ ticketKey, navigate }) {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Tickets not found</h2>
-          <button onClick={() => navigate('home')} className="px-6 py-2 bg-purple-600 text-white rounded-lg">Back to Home</button>
+          <button onClick={() => navigate('/')} className="px-6 py-2 bg-purple-600 text-white rounded-lg">Back to Home</button>
         </div>
       </div>
     );
@@ -57,10 +61,10 @@ export default function Tickets({ ticketKey, navigate }) {
 
   return (
     <div className="min-h-screen bg-white text-black font-sans">
-      <Header navigate={navigate} />
+      <Header />
 
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <button onClick={() => navigate('home')} className="text-purple-600 mb-6">← Back to Home</button>
+        <button onClick={() => navigate('/')} className="text-purple-600 mb-6">← Back to Home</button>
 
         <div className="bg-white rounded-xl shadow p-8">
           <h1 className="text-3xl font-bold mb-2">{event.title}</h1>
@@ -82,7 +86,7 @@ export default function Tickets({ ticketKey, navigate }) {
               </ul>
               <div className="mt-6">
                 <button
-                  onClick={() => navigate(`checkout-${ticketKey}`)}
+                  onClick={() => navigate(`/checkout/${ticketKey}`)}
                   className="w-full bg-purple-600 text-white px-4 py-3 rounded-lg hover:bg-purple-700"
                 >
                   Buy Official Tickets

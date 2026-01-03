@@ -1,6 +1,9 @@
 import React from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
-function Biography({ bioKey, onNavigate }) {
+function Biography() {
+  const { slug } = useParams();
+  const navigate = useNavigate();
   const biographies = {
     'martin-garrix-bio': {
       title: 'Martin Garrix: The Dutch Prodigy',
@@ -534,7 +537,7 @@ function Biography({ bioKey, onNavigate }) {
     }
   };
 
-  const bio = biographies[bioKey];
+  const bio = biographies[slug];
 
   const flags = {
     'martin-garrix-bio': '\u{1F1F3}\u{1F1F1}',
@@ -562,7 +565,7 @@ function Biography({ bioKey, onNavigate }) {
         // ignore
       }
     }
-  }, [bioKey]);
+  }, [slug]);
 
   if (!bio) {
     return (
@@ -571,7 +574,7 @@ function Biography({ bioKey, onNavigate }) {
           <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
             <h1 className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</h1>
             <button
-              onClick={() => onNavigate('home')}
+              onClick={() => navigate('/')}
               className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
             >
               Back to Home
@@ -582,7 +585,7 @@ function Biography({ bioKey, onNavigate }) {
           <h1 className="text-3xl font-bold mb-4">Biography Not Found</h1>
           <p className="text-gray-600 mb-8">The biography you're looking for doesn't exist.</p>
           <button
-            onClick={() => onNavigate('home')}
+            onClick={() => navigate('/')}
             className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition"
           >
             Return Home
@@ -597,18 +600,18 @@ function Biography({ bioKey, onNavigate }) {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-          <h1 
+          <Link
+            to="/"
             className="text-2xl font-bold tracking-wide text-purple-600 cursor-pointer"
-            onClick={() => onNavigate('home')}
           >
             EchoWave
-          </h1>
-          <button
-            onClick={() => onNavigate('home')}
+          </Link>
+          <Link
+            to="/"
             className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
           >
             ← Back to Home
-          </button>
+          </Link>
         </div>
       </nav>
 
@@ -635,7 +638,7 @@ function Biography({ bioKey, onNavigate }) {
                 <span className="font-semibold text-purple-600">{bio.author}</span>
               </div>
               <div className="mt-3">
-                <span ref={flagRef} className="text-2xl" aria-hidden>{flags[bioKey] || ''}</span>
+                <span ref={flagRef} className="text-2xl" aria-hidden>{flags[slug] || ''}</span>
               </div>
             </header>
 

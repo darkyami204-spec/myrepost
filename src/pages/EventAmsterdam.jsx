@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import { FeaturedEventCard, RelatedEventCard, EventDetails } from '../components/events/EventCard';
 import ArtistCard from '../components/events/ArtistCard';
 import { ProducerCard } from '../components/events/ArtistCard';
 
-export default function EventAmsterdam({ navigate }) {
+export default function EventAmsterdam() {
   const producers = [
     { 
       name: 'Martin Garrix', 
@@ -61,7 +62,7 @@ export default function EventAmsterdam({ navigate }) {
 
   return (
     <div className="min-h-screen bg-white text-black font-sans">
-      <Header navigate={navigate} />
+      <Header />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -91,12 +92,12 @@ export default function EventAmsterdam({ navigate }) {
               <h3 className="font-bold text-xl mb-6">Featured Artists</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {featuredArtists.map((artist, index) => (
-                  <ArtistCard
-                    key={index}
-                    artist={artist}
-                    onClick={() => navigate(artist.name.toLowerCase().replace(' ', '-') + '-bio')}
-                    confirmed={true}
-                  />
+                  <Link key={index} to={`/biography/${artist.name.toLowerCase().replace(' ', '-')}-bio`}>
+                    <ArtistCard
+                      artist={artist}
+                      confirmed={true}
+                    />
+                  </Link>
                 ))}
               </div>
             </div>
@@ -136,7 +137,7 @@ export default function EventAmsterdam({ navigate }) {
                 <div>
                   <div className="text-sm text-gray-600 mb-2">Travel Guide</div>
                   <p className="text-gray-800 mb-3">Event spans multiple venues across central Amsterdam — main hubs include the city centre, Jaarbeurs/Utrecht-area showcases and major arenas.</p>
-                  <button onClick={() => navigate('travel-amsterdam')} className="text-sm text-purple-600 hover:underline">View Travel Guide</button>
+                  <Link to="/travel-amsterdam" className="text-sm text-purple-600 hover:underline">View Travel Guide</Link>
                 </div>
               </div>
             </div>
@@ -147,28 +148,30 @@ export default function EventAmsterdam({ navigate }) {
                 Other Events
               </h3>
               <div className="space-y-4">
-                <RelatedEventCard
-                  event={{
-                    title: 'Tenerife EDM Festival 2025',
-                    category: 'Winter Paradise',
-                    location: 'Playa de las Américas',
-                    date: 'Dec 27-30, 2025',
-                    mapUrl: 'https://www.google.com/maps/d/u/0/viewer?mid=1FQn-V7C-RRj8Oc8as5SOrqRbtiU&ll=28.062343%2C-16.726051&z=13',
-                    travelUrl: 'https://www.google.com/travel/things-to-do?dest_mid=%2Fm%2F0cm36&dest_state_type=main&dest_src=yts&q=tenerife+travel+guide'
-                  }}
-                  onClick={() => navigate('tenerife-page')}
-                />
-                <RelatedEventCard
-                  event={{
-                    title: 'Ibiza Opening Parties 2025',
-                    category: 'Summer Season',
-                    location: 'Ibiza',
-                    date: 'May 2-4, 2025',
-                    mapUrl: 'https://www.google.com/maps/d/u/0/viewer?mid=1JHSHkIq0FUMYj7bGk_8Q1PZb8xQ&ll=38.916761%2C1.437954&z=12',
-                    travelUrl: 'https://www.google.com/travel/things-to-do?dest_mid=%2Fm%2F07_5j&dest_state_type=main&dest_src=yts&q=ibiza+travel+guide'
-                  }}
-                  onClick={() => navigate('ibiza-page')}
-                />
+                <Link to="/tenerife-event">
+                  <RelatedEventCard
+                    event={{
+                      title: 'EDCLV Tenerife 2025',
+                      category: 'Winter Paradise',
+                      location: 'Playa de las Américas',
+                      date: 'Dec 27-30, 2025',
+                      mapUrl: 'https://www.google.com/maps/d/u/0/viewer?mid=1FQn-V7C-RRj8Oc8as5SOrqRbtiU&ll=28.062343%2C-16.726051&z=13',
+                      travelUrl: 'https://www.google.com/travel/things-to-do?dest_mid=%2Fm%2F0cm36&dest_state_type=main&dest_src=yts&q=tenerife+travel+guide'
+                    }}
+                  />
+                </Link>
+                <Link to="/ibiza-opening">
+                  <RelatedEventCard
+                    event={{
+                      title: 'Ibiza Opening Parties 2025',
+                      category: 'Summer Season',
+                      location: 'Ibiza',
+                      date: 'May 2-4, 2025',
+                      mapUrl: 'https://www.google.com/maps/d/u/0/viewer?mid=1JHSHkIq0FUMYj7bGk_8Q1PZb8xQ&ll=38.916761%2C1.437954&z=12',
+                      travelUrl: 'https://www.google.com/travel/things-to-do?dest_mid=%2Fm%2F07_5j&dest_state_type=main&dest_src=yts&q=ibiza+travel+guide'
+                    }}
+                  />
+                </Link>
               </div>
             </div>
 
@@ -177,11 +180,11 @@ export default function EventAmsterdam({ navigate }) {
               <h3 className="font-bold text-lg mb-6">Dutch Producers Spotlight</h3>
               <div className="space-y-4">
                 {producers.map((producer, index) => (
-                  <ProducerCard
-                    key={index}
-                    producer={producer}
-                    onClick={() => navigate(producer.bioKey)}
-                  />
+                  <Link key={index} to={`/biography/${producer.bioKey}`}>
+                    <ProducerCard
+                      producer={producer}
+                    />
+                  </Link>
                 ))}
               </div>
             </div>

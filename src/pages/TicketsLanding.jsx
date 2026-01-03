@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
@@ -39,15 +40,16 @@ const FEATURES = [
   'Shuttle & local travel guidance'
 ];
 
-export default function TicketsLanding({ navigate }) {
+export default function TicketsLanding() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white text-black font-sans">
-      <Header navigate={navigate} />
+      <Header />
 
       <main className="max-w-6xl mx-auto px-6 py-12">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold">Tickets & Experiences</h1>
-          <button onClick={() => navigate('home')} className="text-purple-600">← Back to Home</button>
+          <button onClick={() => navigate('/')} className="text-purple-600">← Back to Home</button>
         </div>
 
         <p className="text-gray-700 mb-8">Choose an event below to view ticket options, maps and a list of on-site features (non-alcoholic focused).</p>
@@ -65,7 +67,7 @@ export default function TicketsLanding({ navigate }) {
               <div className="flex items-center justify-between">
                 <div className="text-sm text-gray-500">{e.location}</div>
                 <div className="space-x-2">
-                  <button onClick={() => navigate(e.key)} className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">View Tickets</button>
+                  <button onClick={() => navigate(`/tickets/${e.key}`)} className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">View Tickets</button>
                 </div>
               </div>
             </div>

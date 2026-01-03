@@ -1,32 +1,36 @@
 import React from 'react';
+import { useParams, Link } from 'react-router-dom';
 import articles from '../data/articlesData';
 
-function Article({ articleKey, onNavigate }) {
-  const article = articles[articleKey];
+function Article() {
+  const { slug } = useParams();
+  const article = articles[slug];
 
   if (!article) {
     return (
       <div className="min-h-screen bg-white text-black font-sans">
         <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-            <h1 className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</h1>
-            <button
-              onClick={() => onNavigate('home')}
+            <Link to="/" className="text-2xl font-bold tracking-wide text-purple-600">
+              EchoWave
+            </Link>
+            <Link
+              to="/"
               className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
             >
               Back to Home
-            </button>
+            </Link>
           </div>
         </nav>
         <div className="max-w-4xl mx-auto px-8 py-16 text-center">
           <h1 className="text-3xl font-bold mb-4">Article Not Found</h1>
           <p className="text-gray-600 mb-8">The article you're looking for doesn't exist.</p>
-          <button
-            onClick={() => onNavigate('home')}
+          <Link
+            to="/"
             className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition"
           >
             Return Home
-          </button>
+          </Link>
         </div>
       </div>
     );
@@ -35,22 +39,19 @@ function Article({ articleKey, onNavigate }) {
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-          <h1 
-            className="text-2xl font-bold tracking-wide text-purple-600 cursor-pointer"
-            onClick={() => onNavigate('home')}
-          >
-            EchoWave
-          </h1>
-          <button
-            onClick={() => onNavigate('home')}
-            className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
-          >
-            ← Back to Home
-          </button>
-        </div>
-      </nav>
+        <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
+            <Link to="/" className="text-2xl font-bold tracking-wide text-purple-600">
+              EchoWave
+            </Link>
+            <Link
+              to="/"
+              className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
+            >
+              ← Back to Home
+            </Link>
+          </div>
+        </nav>
 
       {/* Article Content */}
       <article className="max-w-4xl mx-auto px-8 py-12">
@@ -107,12 +108,12 @@ function Article({ articleKey, onNavigate }) {
           <h3 className="text-2xl font-bold mb-6">More Articles</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Object.entries(articles)
-              .filter(([key]) => key !== articleKey)
+              .filter(([key]) => key !== slug)
               .slice(0, 2)
               .map(([key, relatedArticle]) => (
-                <div 
+                <Link 
                   key={key}
-                  onClick={() => onNavigate(key)}
+                  to={`/article/${key}`}
                   className="bg-gray-50 rounded-lg overflow-hidden hover:shadow-md transition cursor-pointer"
                 >
                   <img 
@@ -125,7 +126,7 @@ function Article({ articleKey, onNavigate }) {
                     <p className="text-gray-600 text-sm mb-3">{relatedArticle.summary}</p>
                     <span className="text-purple-600 text-sm font-semibold">Read More →</span>
                   </div>
-                </div>
+                </Link>
               ))}
           </div>
         </section>

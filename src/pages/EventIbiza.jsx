@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import { EventDetails } from '../components/events/EventCard';
 import ArtistCard from '../components/events/ArtistCard';
 import { ProducerCard } from '../components/events/ArtistCard';
 
-export default function EventIbiza({ navigate }) {
+export default function EventIbiza() {
   const producers = [
     { 
       name: 'R3hab', 
@@ -65,15 +66,15 @@ export default function EventIbiza({ navigate }) {
     <div className="min-h-screen bg-white text-black font-sans">
       <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</h1>
+          <Link to="/" className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</Link>
 
           <div className="flex space-x-4 items-center">
-            <button
-              onClick={() => navigate('home')}
+            <Link
+              to="/"
               className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
             >
               Home
-            </button>
+            </Link>
           </div>
         </div>
       </nav>
@@ -125,12 +126,12 @@ export default function EventIbiza({ navigate }) {
                 <h3 className="font-bold text-xl mb-6">Featured Artists</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {featuredArtists.map((artist, index) => (
-                    <ArtistCard
-                      key={index}
-                      artist={artist}
-                      onClick={() => navigate(artist.bioKey)}
-                      confirmed={true}
-                    />
+                    <Link key={index} to={`/biography/${artist.bioKey}`}>
+                      <ArtistCard
+                        artist={artist}
+                        confirmed={true}
+                      />
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -169,7 +170,7 @@ export default function EventIbiza({ navigate }) {
                 <div>
                   <div className="text-sm text-gray-600 mb-2">Travel Guide</div>
                   <p className="text-gray-800 mb-3">Events take place across Ibiza's main club areas and beach towns — central hubs include Playa d'en Bossa, Ibiza Town, and Sant Antoni.</p>
-                  <button onClick={() => navigate('travel-ibiza')} className="text-sm text-blue-600 hover:underline">View Travel Guide</button>
+                  <Link to="/travel-ibiza" className="text-sm text-blue-600 hover:underline">View Travel Guide</Link>
                 </div>
               </div>
             </div>
@@ -181,63 +182,63 @@ export default function EventIbiza({ navigate }) {
               </h3>
               <div className="space-y-4">
                 {/* Amsterdam Event */}
-                <div 
-                  onClick={() => navigate('amsterdam-page')}
-                  className="p-4 bg-white rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98]"
-                >
-                  <div className="flex justify-between items-start">
-                    <h4 className="font-medium text-gray-900">Amsterdam Dance Event 2025</h4>
-                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">
-                      Featured Event
-                    </span>
-                  </div>
-                  <div className="flex items-center mt-2 text-sm text-gray-500">
-                    <span className="mr-3">📍 Amsterdam • Oct 15-19, 2025</span>
-                    <div className="ml-auto flex items-center space-x-2">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); window.open('https://www.google.com/maps/d/u/0/viewer?mid=1V9_JcC3V38MT_c6GZHSXUv2THsM&ll=52.370216%2C4.895168&z=13', '_blank', 'noopener'); }}
-                        className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
-                      >
-                        Map
-                      </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); navigate('travel-amsterdam'); }}
-                        className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
-                      >
-                        Travel
-                      </button>
+                <Link to="/amsterdam-event">
+                  <div className="p-4 bg-white rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98]">
+                    <div className="flex justify-between items-start">
+                      <h4 className="font-medium text-gray-900">Amsterdam Dance Event 2025</h4>
+                      <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">
+                        Featured Event
+                      </span>
+                    </div>
+                    <div className="flex items-center mt-2 text-sm text-gray-500">
+                      <span className="mr-3">📍 Amsterdam • Oct 15-19, 2025</span>
+                      <div className="ml-auto flex items-center space-x-2">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); window.open('https://www.google.com/maps/d/u/0/viewer?mid=1V9_JcC3V38MT_c6GZHSXUv2THsM&ll=52.370216%2C4.895168&z=13', '_blank', 'noopener'); }}
+                          className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+                        >
+                          Map
+                        </button>
+                        <Link
+                          to="/travel-amsterdam"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+                        >
+                          Travel
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
 
-                <div 
-                  onClick={() => navigate('tenerife-page')}
-                  className="p-4 bg-white rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98]"
-                >
-                  <div className="flex justify-between items-start">
-                    <h4 className="font-medium text-gray-900">Tenerife EDM Festival 2025</h4>
-                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">
-                      Winter Paradise
-                    </span>
-                  </div>
-                  <div className="flex items-center mt-2 text-sm text-gray-500">
-                    <span className="mr-3">📍 Tenerife • Dec 27-30, 2025</span>
-                    <div className="ml-auto flex items-center space-x-2">
-                      <button
-                        onClick={(e) => { e.stopPropagation(); window.open('https://www.google.com/maps/d/u/0/viewer?mid=1FQn-V7C-RRj8Oc8as5SOrqRbtiU&ll=28.062343%2C-16.726051&z=13', '_blank', 'noopener'); }}
-                        className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
-                      >
-                        Map
-                      </button>
-                      <button
-                        onClick={(e) => { e.stopPropagation(); navigate('travel-tenerife'); }}
-                        className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
-                      >
-                        Travel
-                      </button>
+                <Link to="/tenerife-event">
+                  <div className="p-4 bg-white rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98]">
+                    <div className="flex justify-between items-start">
+                      <h4 className="font-medium text-gray-900">Tenerife EDM Festival 2025</h4>
+                      <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">
+                        Winter Paradise
+                      </span>
+                    </div>
+                    <div className="flex items-center mt-2 text-sm text-gray-500">
+                      <span className="mr-3">📍 Tenerife • Dec 27-30, 2025</span>
+                      <div className="ml-auto flex items-center space-x-2">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); window.open('https://www.google.com/maps/d/u/0/viewer?mid=1FQn-V7C-RRj8Oc8as5SOrqRbtiU&ll=28.062343%2C-16.726051&z=13', '_blank', 'noopener'); }}
+                          className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+                        >
+                          Map
+                        </button>
+                        <Link
+                          to="/travel-tenerife"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-xs bg-gray-100 px-2 py-1 rounded hover:bg-gray-200"
+                        >
+                          Travel
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
 
@@ -246,23 +247,21 @@ export default function EventIbiza({ navigate }) {
               <h3 className="font-bold text-lg mb-6">Ibiza Legends</h3>
               <div className="space-y-4">
                 {producers.map((producer, index) => (
-                  <div 
-                    key={index} 
-                    onClick={() => navigate(producer.bioKey)}
-                    className="flex items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98] select-none"
-                  >
-                    <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${producer.color} flex items-center justify-center text-white font-bold text-sm mr-4`}>
-                      {producer.name.split(' ').map(n => n[0]).join('')}
+                  <Link key={index} to={`/biography/${producer.bioKey}`}>
+                    <div className="flex items-center p-4 bg-white/80 backdrop-blur-sm rounded-lg hover:shadow-md transition cursor-pointer active:scale-[0.98] select-none">
+                      <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${producer.color} flex items-center justify-center text-white font-bold text-sm mr-4`}>
+                        {producer.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold text-gray-900">{producer.name}</div>
+                        <div className="text-sm text-gray-600">{producer.genre}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs text-gray-500">Followers</div>
+                        <div className="font-bold text-gray-900">{producer.followers}</div>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <div className="font-semibold text-gray-900">{producer.name}</div>
-                      <div className="text-sm text-gray-600">{producer.genre}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xs text-gray-500">Followers</div>
-                      <div className="font-bold text-gray-900">{producer.followers}</div>
-                    </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 
-export default function EDCLasVegas({ navigate }) {
+export default function EDCLasVegas() {
   const post = {
     title: 'EDC Las Vegas Highlights: Iconic Moments from the Circuit Grounds',
     author: 'EchoWave Team • Dec 12, 2025',
@@ -29,16 +30,16 @@ export default function EDCLasVegas({ navigate }) {
 
   return (
     <div className="min-h-screen bg-white text-black font-sans">
-      <Header navigate={navigate} />
+      <Header />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <button
-          onClick={() => navigate('home')}
+        <Link
+          to="/"
           className="flex items-center text-purple-600 hover:text-purple-800 mb-8 group"
         >
           <span className="mr-2 group-hover:-translate-x-1 transition-transform">←</span>
           Back
-        </button>
+        </Link>
 
         <header className="mb-10">
           <div className="flex items-center text-sm text-gray-500 mb-4">

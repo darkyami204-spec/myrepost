@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import { EVENTS } from './Tickets';
@@ -10,8 +11,10 @@ function parsePrice(priceStr) {
   return Number.isFinite(v) ? v : 0;
 }
 
-export default function TicketsCheckout({ checkoutKey, navigate }) {
-  const eventKey = typeof checkoutKey === 'string' ? checkoutKey.replace(/^checkout-/, '') : checkoutKey;
+export default function TicketsCheckout() {
+  const navigate = useNavigate();
+  const { checkoutId } = useParams();
+  const eventKey = typeof checkoutId === 'string' ? checkoutId.replace(/^checkout-/, '') : checkoutId;
   const event = EVENTS[eventKey];
 
   const initialCounts = useMemo(() => {
@@ -43,7 +46,7 @@ export default function TicketsCheckout({ checkoutKey, navigate }) {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold mb-4">Checkout not found</h2>
-          <button onClick={() => navigate('tickets')} className="px-6 py-2 bg-purple-600 text-white rounded-lg">Back to Tickets</button>
+          <button onClick={() => navigate('/tickets')} className="px-6 py-2 bg-purple-600 text-white rounded-lg">Back to Tickets</button>
         </div>
       </div>
     );
@@ -51,10 +54,10 @@ export default function TicketsCheckout({ checkoutKey, navigate }) {
 
   return (
     <div className="min-h-screen bg-white text-black font-sans">
-      <Header navigate={navigate} />
+      <Header />
 
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <button onClick={() => navigate('tickets')} className="text-purple-600 mb-6">← Back to Tickets</button>
+        <button onClick={() => navigate('/tickets')} className="text-purple-600 mb-6">← Back to Tickets</button>
 
         <div className="bg-white rounded-xl shadow p-8">
           <h1 className="text-3xl font-bold mb-2">{event.title}</h1>
