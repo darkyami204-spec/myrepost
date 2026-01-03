@@ -131,15 +131,15 @@ export default function Future() {
         <div className="border-t border-gray-200 pt-8 mb-16">
           <h4 className="font-bold text-lg mb-4">Share this guide</h4>
           <div className="flex space-x-4">
-            <button className="p-3 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition">
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition">
               Twitter
-            </button>
-            <button className="p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
               Facebook
-            </button>
-            <button className="p-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">
               Instagram
-            </button>
+            </a>
           </div>
         </div>
 

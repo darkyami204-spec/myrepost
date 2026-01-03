@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 function SignUp() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = React.useState({
     firstName: '',
     lastName: '',
@@ -59,18 +61,57 @@ function SignUp() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       setIsLoading(true);
-      
-      // Simulate API call
-      setTimeout(() => {
+
+      try {
+        const response = await fetch('http://localhost:5000/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            password: formData.password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Success - auto login the user
+          const userData = {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email
+          };
+          login(userData);
+          alert('Account created successfully!');
+          navigate('/');
+        } else {
+          // Handle different error types
+          if (response.status === 409) {
+            // Duplicate email
+            setErrors({ submit: 'Email already exists. Please use a different email address.' });
+          } else if (response.status === 400) {
+            // Validation error
+            setErrors({ submit: data.error || 'Please check your information and try again.' });
+          } else {
+            // Other server errors
+            setErrors({ submit: 'Server error. Please try again later.' });
+          }
+        }
+      } catch (error) {
+        console.error('Signup error:', error);
+        setErrors({ submit: 'Network error. Please check your connection and try again.' });
+      } finally {
         setIsLoading(false);
-        alert('Account created successfully! (This is a demo)');
-        navigate('/');
-      }, 1500);
+      }
     }
   };
 

@@ -1,7 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
+import LoginSuccess from './pages/LoginSuccess';
 import SignUp from './pages/SignUp';
 import TicketsLanding from './pages/TicketsLanding';
 import Tickets from './pages/Tickets';
@@ -27,14 +29,16 @@ import EDCLasVegas from './pages/EDCLasVegas';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
 
         {/* MAIN */}
         <Route path="/" element={<Home />} />
 
         {/* AUTH */}
         <Route path="/login" element={<Login />} />
+        <Route path="/login-success" element={<LoginSuccess />} />
         <Route path="/signup" element={<SignUp />} />
 
         {/* EVENTS */}
@@ -66,10 +70,28 @@ function App() {
         <Route path="/edc-las-vegas" element={<EDCLasVegas />} />
 
         {/* 404 */}
-        <Route path="*" element={<h2 className="text-center mt-20">Page not found</h2>} />
+        <Route path="*" element={
+          <div className="min-h-screen bg-white text-black font-sans">
+            <section className="h-[80vh] flex flex-col items-center justify-center text-center px-6">
+              <h2 className="text-5xl md:text-6xl font-extrabold mb-6">
+                Page <span className="text-purple-600">Not Found</span>
+              </h2>
+              <p className="max-w-xl text-gray-600 mb-8">
+                The page you're looking for doesn't exist. Let's get you back to the music.
+              </p>
+              <Link
+                to="/"
+                className="bg-purple-600 hover:bg-purple-700 transition px-8 py-3 rounded-full font-semibold text-white"
+              >
+                Return to Home
+              </Link>
+            </section>
+          </div>
+        } />
 
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   );
 }
 

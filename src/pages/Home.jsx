@@ -1,8 +1,9 @@
 // In src/pages/Home.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import articles from '../data/articlesData';
 import latestPosts from '../data/latestPosts';
+import Header from '../components/common/Header';
 
 function Footer() {
   return (
@@ -18,9 +19,6 @@ function Footer() {
 }
 
 export default function Home() {
-  const [genreOpen, setGenreOpen] = useState(false);
-  const [eventsOpen, setEventsOpen] = useState(false);
-
   // Function to get the correct route for latest posts
   const getPostRoute = (slug) => {
     const routeMap = {
@@ -30,94 +28,10 @@ export default function Home() {
     };
     return routeMap[slug] || `/article/${slug}`;
   };
-  const [exclusivesOpen, setExclusivesOpen] = useState(false);
 
   return (
     <div className="bg-white text-black font-sans">
-      <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold tracking-wide text-purple-600">EchoWave</h1>
-
-          <div className="flex space-x-4 items-center">
-            <Link
-              to="/"
-              className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
-            >
-              Home
-            </Link>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setGenreOpen(true)}
-              onMouseLeave={() => setGenreOpen(false)}
-            >
-              <button className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition flex items-center gap-1">
-                Genre <span className="text-xs">▼</span>
-              </button>
-              {genreOpen && (
-                <div className="absolute left-0 top-full w-40 bg-white border border-gray-200 rounded-lg shadow-lg">
-                  <Link to="/progressive" className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Progressive</Link>
-                  <Link to="/future" className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Future</Link>
-                  <Link to="/bass" className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Bass</Link>
-                </div>
-              )}
-            </div>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setEventsOpen(true)}
-              onMouseLeave={() => setEventsOpen(false)}
-            >
-              <button className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition flex items-center gap-1">
-                Events <span className="text-xs">▼</span>
-              </button>
-              {eventsOpen && (
-                <div className="absolute left-0 top-full w-44 bg-white border border-gray-200 rounded-lg shadow-lg">
-                  <Link to="/amsterdam" className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Amsterdam</Link>
-                  <Link to="/tenerife" className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Tenerife</Link>
-                  <Link to="/ibiza" className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Ibiza</Link>
-                </div>
-              )}
-            </div>
-
-            <Link
-              to="/tickets"
-              className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
-            >
-              Tickets
-            </Link>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setExclusivesOpen(true)}
-              onMouseLeave={() => setExclusivesOpen(false)}
-            >
-              <button className="px-4 py-2 rounded-lg text-sm font-medium bg-purple-600 text-white hover:bg-purple-700 transition flex items-center gap-1">
-                Exclusives <span className="text-xs">▼</span>
-              </button>
-              {exclusivesOpen && (
-                <div className="absolute right-0 top-full w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
-                  <Link to="/biographies" className="block px-4 py-2 text-sm hover:bg-gray-100 text-left w-full">Biography</Link>
-                  <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-100">Discounts</a>
-                </div>
-              )}
-            </div>
-
-            <Link
-              to="/login"
-              className="ml-6 px-4 py-2 rounded-lg text-sm font-semibold bg-purple-600 text-white hover:bg-purple-700 transition"
-            >
-              Log In
-            </Link>
-            <Link
-              to="/signup"
-              className="px-4 py-2 rounded-lg text-sm font-semibold bg-purple-600 text-white hover:bg-purple-700 transition"
-            >
-              Sign Up
-            </Link>
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       <section className="h-[80vh] flex flex-col items-center justify-center text-center px-6">
         <h2 className="text-5xl md:text-6xl font-extrabold mb-6">
